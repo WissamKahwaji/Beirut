@@ -15,7 +15,7 @@ import { ProductType } from "@/api/products/type";
 import { NAV_LINKS } from "@/constants";
 import TypographyLarge from "@/components/ui/typographyLarge";
 import { Logo } from "@/api/common/type";
-import Drawer from "./Drawer";
+import Drawer from "../../components/items/Drawer";
 import { BsList } from "react-icons/bs";
 
 const Navbar = () => {
@@ -50,11 +50,18 @@ const Navbar = () => {
                     <TypographyLarge>products</TypographyLarge>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="mx-6 my-6  [&>li]:mt-2">
+                    <ul className="mx-6 my-6 min-w-[100px] capitalize  [&>li]:mt-2">
+                      <li>
+                        <Link to={"/products"}>
+                          <NavigationMenuLink asChild>
+                            <TypographyLarge>all products</TypographyLarge>
+                          </NavigationMenuLink>
+                        </Link>
+                      </li>
                       {productTypes?.map((productType) => (
                         <li key={productType._id}>
-                          <Link to={`/products/${productType._id}`}>
-                            <NavigationMenuLink>
+                          <Link to={`/products?type=${productType._id}`}>
+                            <NavigationMenuLink asChild>
                               <TypographyLarge>
                                 {productType.name}
                               </TypographyLarge>

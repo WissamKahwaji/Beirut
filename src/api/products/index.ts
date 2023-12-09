@@ -13,4 +13,10 @@ const getProductTypes = async () => {
   );
   return res.data;
 };
-export { getProductTypes, getProducts };
+const getProductDetails = async (id: string | undefined) => {
+  const res = await publicInstance.get<Product>(
+    API_ROUTES.PRODUCTS.GET_PRODUCT_DETAILS(id),
+  );
+  return res.data;
+};
+export { getProductTypes, getProducts, getProductDetails };

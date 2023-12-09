@@ -1,8 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductTypes, getProducts } from ".";
+import { getProductDetails, getProductTypes, getProducts } from ".";
 
 const useGetProductsQuery = () =>
   useQuery({ queryKey: ["products"], queryFn: () => getProducts() });
 const useGetProductTypeQuery = () =>
   useQuery({ queryKey: ["product-types"], queryFn: () => getProductTypes() });
-export { useGetProductTypeQuery, useGetProductsQuery };
+const useGetProductDetailsQuery = (id: string | undefined) =>
+  useQuery({
+    queryKey: ["product-details"],
+    queryFn: () => getProductDetails(id),
+    enabled: !!id,
+  });
+export {
+  useGetProductTypeQuery,
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+};

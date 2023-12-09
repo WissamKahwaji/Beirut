@@ -1,6 +1,7 @@
 const PRODUCTS = {
   GET_PRODUCTS: "/products",
   GET_PRODUCT_TYPES: "/products/product-type",
+  GET_PRODUCT_DETAILS: (id: string | undefined) => `/products/byid/${id}`,
 };
 const COMMON = {
   GET_LOGO: "logo",

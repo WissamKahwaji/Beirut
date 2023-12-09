@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <main className="mt-[65px] md:mt-[105px] ">
+      <main className="mt-[65px] md:mt-[105px] md:min-h-[calc(100vh_-_405px)] ">
         <Outlet />
       </main>
       <Footer />

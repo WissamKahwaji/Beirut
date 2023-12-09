@@ -1,6 +1,5 @@
 import { useGetProductsQuery } from "@/api/products/queries";
 import ProductCard from "@/components/items/productCard";
-import React from "react";
 
 const ProductSection = () => {
   const { data: products } = useGetProductsQuery();
@@ -14,8 +13,8 @@ const ProductSection = () => {
       <div className="flex flex-wrap items-center justify-center gap-10  md:gap-8 ">
         {products
           ?.slice(0, 3)
-          .map(({ title, desc, img, deepDetails }) => (
-            <ProductCard {...{ title, desc, img, deepDetails }} />
+          .map(({ _id, title, desc, img, deepDetails }) => (
+            <ProductCard {...{ id: _id, title, desc, img, deepDetails }} />
           ))}
       </div>
     </section>
