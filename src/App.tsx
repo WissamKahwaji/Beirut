@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import Navbar from "./layout/navbar";
+import Navbar from "./layout/header";
 import Footer from "./layout/footer";
 import { useGetProductTypeQuery } from "./api/products/queries";
 import { useGetLogo } from "./api/common/queries";
@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <main className="mt-[105px] ">
+      <main className="mt-[65px] md:mt-[105px] ">
         <Outlet />
       </main>
       <Footer />

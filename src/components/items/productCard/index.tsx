@@ -5,8 +5,8 @@ import { ProductCardProps } from "./type";
 
 const ProductCard = ({ img, title, desc, deepDetails }: ProductCardProps) => {
   return (
-    <div className="flex w-[384px] flex-col items-center gap-8 overflow-hidden">
-      <div className="h-[50%] w-full ">
+    <div className="flex w-[250px] flex-col items-center gap-4 overflow-hidden sm:w-[280px] sm:gap-6 md:w-[320px] md:gap-8">
+      <div className=" w-full ">
         <img
           className="aspect-square h-full w-full object-cover"
           src={img}
@@ -14,8 +14,8 @@ const ProductCard = ({ img, title, desc, deepDetails }: ProductCardProps) => {
         />
       </div>
       <div>
-        <p className="text-lg font-semibold uppercase">{title}</p>
-        <p className="flex items-center justify-center text-lg text-muted-foreground">
+        <p className="text-sm font-semibold uppercase md:text-lg">{title}</p>
+        <p className="flex items-center justify-center text-sm text-muted-foreground md:text-lg">
           <BsCurrencyDollar />
           <span>{deepDetails.price}</span>
         </p>

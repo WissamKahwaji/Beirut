@@ -22,45 +22,51 @@ const Footer = () => {
   ]);
   const logo: Logo | undefined = queryClient.getQueryData(["get-logo"]);
   return (
-    <div className="flex gap-16 border-t border-border px-12 py-16 sm:px-24 md:px-36  lg:px-96">
-      <div>
-        <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
-          taps
-        </p>
-        <ul className="flex flex-col justify-center gap-2">
-          <li>
-            <Link to={"/"}>
-              <p className=" font-semibold capitalize">home</p>
-            </Link>
-          </li>
-          {NAV_LINKS.map((navLink) => (
-            <li key={navLink.label}>
-              <Link to={navLink.href}>
-                <p className=" font-semibold capitalize">{navLink.label}</p>
+    <div className="flex flex-col gap-16 border-t border-border px-12 py-16 sm:px-24 md:flex-row md:px-36  lg:px-96">
+      <div className=" flex gap-16">
+        <div>
+          <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
+            taps
+          </p>
+          <ul className="flex flex-col justify-center gap-2">
+            <li>
+              <Link to={"/"}>
+                <p className=" font-semibold capitalize">home</p>
               </Link>
             </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
-          product types
-        </p>
-        <ul className="flex flex-col justify-center gap-2">
-          {productTypes?.slice(0, 4).map((productType) => (
-            <li key={productType._id}>
-              <Link to={`/products/${productType._id}`}>
-                <p className=" font-semibold capitalize">{productType.name}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+            {NAV_LINKS.map((navLink) => (
+              <li key={navLink.label}>
+                <Link to={navLink.href}>
+                  <p className=" font-semibold capitalize">{navLink.label}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
+            product types
+          </p>
+          <ul className="flex flex-col justify-center gap-2">
+            {productTypes?.slice(0, 4).map((productType) => (
+              <li key={productType._id}>
+                <Link to={`/products/${productType._id}`}>
+                  <p className=" font-semibold capitalize">
+                    {productType.name}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div>
         <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
           locations
         </p>
-        <p className="w-56 font-semibold ">{contactUsInfo?.content.location}</p>
+        <p className="font-semibold md:w-56 ">
+          {contactUsInfo?.content.location}
+        </p>
       </div>
       <div>
         <p className="mb-6 text-xl font-semibold capitalize text-gray-400">

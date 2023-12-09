@@ -4,7 +4,7 @@ const LandingPage = () => {
   const { data: homeData } = useGetHomeData();
 
   return (
-    <div className="relative flex h-screen flex-col items-center justify-center gap-8 overflow-hidden px-7 md:px-14 lg:px-20">
+    <div className="relative flex h-[60vh] flex-col items-center justify-center gap-8 overflow-hidden px-7 md:h-[calc(100vh_-_105px)] md:px-14 lg:px-20">
       <img
         src={homeData?.landingImg}
         className="absolute left-0 top-0 -z-10 aspect-square h-full w-full object-cover"
