@@ -22,7 +22,7 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContent) => {
             <h2 className="mb-2  scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
               {contactUs.title}
             </h2>
-            <p>{contactUs.text}</p>
+            <p className="text-muted-foreground">{contactUs.text}</p>
           </div>
         </div>
       ))}

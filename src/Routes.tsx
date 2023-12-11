@@ -6,10 +6,13 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import App from "./App";
+import LoadingPage from "./pages/loading";
 const Home = lazy(() => import("@/pages/Home"));
 const Products = lazy(() => import("@/pages/products"));
 const Product = lazy(() => import("@/pages/product"));
 const AboutUs = lazy(() => import("@/pages/aboutUs"));
+const ContactUs = lazy(() => import("@/pages/contactUs"));
+const Orders = lazy(() => import("@/pages/orders"));
 const Routes = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -18,11 +21,13 @@ const Routes = () => {
         <Route path={"products"} element={<Products />} />
         <Route path="product/:id" element={<Product />} />
         <Route path="about-us" element={<AboutUs />} />
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="orders" element={<Orders />} />
       </Route>,
     ),
   );
   return (
-    <Suspense fallback={<></>}>
+    <Suspense fallback={<LoadingPage />}>
       <RouterProvider router={router} />
     </Suspense>
   );

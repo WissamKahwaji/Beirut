@@ -1,16 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { useGetProductDetailsQuery } from "@/api/products/queries";
 import { IdParams } from "./type";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { Button } from "@/components/ui/button";
+import { useForm } from "react-hook-form";
+import addToCardValidationSchema, {
+  AddToCardValues,
+} from "@/utils/validation/product";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addToCart, selectCartValues } from "@/features/cart/slice";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
 const Product = () => {
-  const [count, setCount] = useState<number>(0);
   const { id } = useParams<IdParams>();
+  const cardValues = useAppSelector(selectCartValues);
+  const dispatch = useAppDispatch();
 
   const { data: productDetails } = useGetProductDetailsQuery(id);
+  const {
+    register,
+    watch,
+    setValue,
+    formState: { errors, dirtyFields },
+    handleSubmit,
+  } = useForm<AddToCardValues>({
+    resolver: zodResolver(addToCardValidationSchema),
+    defaultValues: {
+      count:
+        cardValues.cartValues.find((productInCard) => productInCard._id === id)
+          ?.count ?? 0,
+    },
+  });
+  useEffect(() => {
+    console.log(
+      cardValues.cartValues.find((productInCard) => productInCard._id === id)
+        ?.count,
+    );
+    setValue(
+      "count",
+      cardValues.cartValues.find((productInCard) => productInCard._id === id)
+        ?.count ?? 0,
+    );
+  }, [cardValues, id, setValue, watch]);
+
+  console.log(cardValues);
+  const onSubmit = (values: AddToCardValues) => {
+    dispatch(addToCart({ ...productDetails, count: values.count }));
+  };
   return (
     <div className=" py-24 ">
       <div className="  flex flex-col justify-center gap-4 bg-gray-background px-6 py-4 md:flex-row md:gap-6 ">
@@ -53,23 +91,42 @@ const Product = () => {
           <div className="overflow-hidden ">
             <p>{productDetails?.desc}</p>
           </div>
-          <div className="flex flex-col  gap-8">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col  gap-8"
+          >
             <div className="flex items-center justify-center gap-4">
-              <p className="border bg-background p-2 px-4 shadow-sm">{count}</p>
+              <input
+                type="number"
+                name="count"
+                value={watch("count")}
+                onChange={(e) => setValue("count", Number(e.target.value))}
+                // {...register("count")}
+
+                className="border bg-background p-2 px-4 shadow-sm"
+              />
+
               <div className="flex ">
                 <button
+                  type="button"
                   className="transition-transform hover:scale-90"
-                  onClick={() => setCount((count) => count + 1)}
+                  onClick={() => setValue("count", Number(watch("count")) + 1)}
                 >
                   <CiSquarePlus className="h-12 w-12" />
                 </button>
-                <button onClick={() => setCount((count) => count - 1)}>
+                <button
+                  type="button"
+                  onClick={() => setValue("count", Number(watch("count")) - 1)}
+                >
                   <CiSquareMinus className="h-12 w-12" />
                 </button>
               </div>
             </div>
-            <Button> add to card</Button>
-          </div>
+            {errors.count && (
+              <p className="text-destructive">{errors.count.message}</p>
+            )}
+            <Button type="submit"> add to card</Button>
+          </form>
         </div>
       </div>
     </div>
