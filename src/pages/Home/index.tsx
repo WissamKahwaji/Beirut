@@ -1,15 +1,18 @@
-import AboutUsInfo from "@/components/pages/home/aboutUsInfo";
+import { useGetAboutUsInfoQuery } from "@/api/aboutUs/queries";
+import AboutUsInfo from "@/components/items/aboutUsInfo";
 import LandingPage from "@/components/pages/home/landingPage";
 import ProductSection from "@/components/pages/home/productSection";
 import ProductTypes from "@/components/pages/home/productTypes";
 import Container from "@/components/ui/container";
 
 const Home = () => {
+  const { data: aboutUsInfo } = useGetAboutUsInfoQuery();
+
   return (
     <div>
       <LandingPage />
       <ProductSection />
-      <AboutUsInfo />
+      <AboutUsInfo aboutUsContent={aboutUsInfo?.content} />
       <ProductTypes />
     </div>
   );

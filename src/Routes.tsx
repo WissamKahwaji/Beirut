@@ -9,6 +9,7 @@ import App from "./App";
 const Home = lazy(() => import("@/pages/Home"));
 const Products = lazy(() => import("@/pages/products"));
 const Product = lazy(() => import("@/pages/product"));
+const AboutUs = lazy(() => import("@/pages/aboutUs"));
 const Routes = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ const Routes = () => {
         <Route index element={<Home />} />
         <Route path={"products"} element={<Products />} />
         <Route path="product/:id" element={<Product />} />
+        <Route path="about-us" element={<AboutUs />} />
       </Route>,
     ),
   );
