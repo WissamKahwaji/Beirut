@@ -12,8 +12,8 @@ const Product = () => {
 
   const { data: productDetails } = useGetProductDetailsQuery(id);
   return (
-    <div className="mx-16  py-24 sm:mx-24 md:mx-36 lg:mx-96">
-      <div className=" flex flex-col gap-4 bg-gray-background px-6 py-4 md:flex-row md:gap-6 ">
+    <div className=" py-24 ">
+      <div className="  flex flex-col justify-center gap-4 bg-gray-background px-6 py-4 md:flex-row md:gap-6 ">
         <p className="sm:2xl lg:5xl border-b border-border pb-4 text-xl font-semibold uppercase md:hidden md:text-4xl">
           {productDetails?.title}
         </p>

@@ -22,7 +22,7 @@ const Footer = () => {
   ]);
   const logo: Logo | undefined = queryClient.getQueryData(["get-logo"]);
   return (
-    <div className="shadow-negative flex flex-col gap-16 border-t border-border px-12 py-16 sm:px-24 md:flex-row md:px-36  lg:px-96">
+    <div className="flex flex-col justify-center gap-16 border-t  border-border px-12 py-16  shadow-negative  md:flex-row ">
       <div className=" flex gap-16">
         <div>
           <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
