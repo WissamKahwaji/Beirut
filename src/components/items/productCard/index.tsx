@@ -10,7 +10,7 @@ const ProductCart = (props: ProductCardProps) => {
   const { _id, img, title, desc, deepDetails } = props;
   const dispatch = useAppDispatch();
   return (
-    <div className="m-auto flex w-[250px] flex-col sm:w-[280px] sm:gap-5 md:w-[320px]">
+    <div className="m-auto flex w-[250px] flex-col px-4 sm:w-[280px] sm:gap-5 md:w-[320px]">
       <Link to={`/product/${_id}`}>
         <div className="  group flex w-full  flex-col items-center gap-4 overflow-hidden  ">
           <div className="  relative w-full ">

@@ -36,12 +36,21 @@ const Navbar = () => {
       <header className="fixed left-0 top-0 z-10 w-screen border-b border-border bg-background px-4 py-3 shadow-sm md:px-8 md:py-6 ">
         <nav className=" flex items-center justify-between  ">
           <Link to={"/"} className="hidden md:block">
-            <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
-              <img
-                className=" aspect-square h-full w-full object-cover "
-                src={logo?.mainLogo}
-                alt="logo"
-              />
+            <div className="flex">
+              <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
+                <img
+                  className=" aspect-square h-full w-full object-cover "
+                  src={"/logo.svg"}
+                  alt="logo"
+                />
+              </div>
+              <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
+                <img
+                  className=" aspect-square h-full w-full object-cover "
+                  src={"/logoName.svg"}
+                  alt="logo"
+                />
+              </div>
             </div>
           </Link>
           <div className=" flex gap-8">
