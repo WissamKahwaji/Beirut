@@ -35,16 +35,16 @@ const Navbar = () => {
     <>
       <header className="fixed left-0 top-0 z-10 w-screen border-b border-border bg-background px-4 py-3 shadow-sm md:px-8 md:py-6 ">
         <nav className=" flex items-center justify-between  ">
+          <Link to={"/"} className="hidden md:block">
+            <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
+              <img
+                className=" aspect-square h-full w-full object-cover "
+                src={logo?.mainLogo}
+                alt="logo"
+              />
+            </div>
+          </Link>
           <div className=" flex gap-8">
-            <Link to={"/"}>
-              <div className=" h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14">
-                <img
-                  className=" aspect-square h-full w-full object-cover "
-                  src={logo?.mainLogo}
-                  alt="logo"
-                />
-              </div>
-            </Link>
             <button className="md:hidden" onClick={handleOpenDrawer}>
               <BsList className=" h-10 w-10 transition-transform hover:scale-110 " />
             </button>
@@ -71,7 +71,9 @@ const Navbar = () => {
                         </li>
                         {productTypes?.map((productType) => (
                           <li key={productType._id}>
-                            <Link to={`/products?type=${productType._id}`}>
+                            <Link
+                              to={`/products?type=${productType.name}&type_id=${productType._id}`}
+                            >
                               <NavigationMenuLink asChild>
                                 <TypographyLarge>
                                   {productType.name}
@@ -97,7 +99,7 @@ const Navbar = () => {
               </>
             </div>
           </div>
-          <div>
+          <div className="md:pr-16">
             <BasketMenu />
           </div>
         </nav>

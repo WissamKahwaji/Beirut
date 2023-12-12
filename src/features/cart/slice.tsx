@@ -8,9 +8,13 @@ interface CartValue extends Product {
 interface InitialState {
   cartValues: CartValue[];
 }
-const initialState: InitialState = {
-  cartValues: [],
-};
+const persisCartValues = localStorage.getItem("cartValues");
+const initialState: InitialState = persisCartValues
+  ? JSON.parse(persisCartValues)
+  : {
+      cartValues: [],
+    };
+console.log(JSON.parse(persisCartValues!));
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -19,7 +23,7 @@ const cartSlice = createSlice({
       console.log(action.payload);
       const product = action.payload;
       const existProductIndex = state.cartValues.findIndex(
-        (productInCard) => productInCard._id === product._id,
+        (productInCart) => productInCart._id === product._id,
       );
       if (existProductIndex !== -1) {
         const existProductObject = state.cartValues[existProductIndex];

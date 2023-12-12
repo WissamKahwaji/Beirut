@@ -1,13 +1,21 @@
 import { Outlet } from "react-router-dom";
-import "./App.css";
 import Navbar from "./layout/header";
 import Footer from "./layout/footer";
 import { useGetProductTypeQuery } from "./api/products/queries";
 import { useGetLogo } from "./api/common/queries";
+import { useAppSelector } from "./app/hooks";
+import { selectCartValues } from "./features/cart/slice";
+import { useEffect } from "react";
+import "./App.css";
+import "react-multi-carousel/lib/styles.css";
 
 function App() {
+  const cartValues = useAppSelector(selectCartValues);
   useGetProductTypeQuery();
   useGetLogo();
+  useEffect(() => {
+    localStorage.setItem("cartValues", JSON.stringify(cartValues));
+  }, [cartValues]);
   return (
     <div className="App">
       <Navbar />

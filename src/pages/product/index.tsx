@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BsCurrencyDollar } from "react-icons/bs";
 import { useGetProductDetailsQuery } from "@/api/products/queries";
 import { IdParams } from "./type";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import addToCardValidationSchema, {
-  AddToCardValues,
+import addToCartValidationSchema, {
+  AddToCartValues,
 } from "@/utils/validation/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addToCart, selectCartValues } from "@/features/cart/slice";
@@ -15,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks";
 
 const Product = () => {
   const { id } = useParams<IdParams>();
-  const cardValues = useAppSelector(selectCartValues);
+  const cartValues = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
 
   const { data: productDetails } = useGetProductDetailsQuery(id);
@@ -25,28 +24,24 @@ const Product = () => {
     setValue,
     formState: { errors, dirtyFields },
     handleSubmit,
-  } = useForm<AddToCardValues>({
-    resolver: zodResolver(addToCardValidationSchema),
+  } = useForm<AddToCartValues>({
+    resolver: zodResolver(addToCartValidationSchema),
     defaultValues: {
       count:
-        cardValues.cartValues.find((productInCard) => productInCard._id === id)
+        cartValues.cartValues.find((productInCart) => productInCart._id === id)
           ?.count ?? 0,
     },
   });
   useEffect(() => {
-    console.log(
-      cardValues.cartValues.find((productInCard) => productInCard._id === id)
-        ?.count,
-    );
     setValue(
       "count",
-      cardValues.cartValues.find((productInCard) => productInCard._id === id)
+      cartValues.cartValues.find((productInCart) => productInCart._id === id)
         ?.count ?? 0,
     );
-  }, [cardValues, id, setValue, watch]);
+  }, [cartValues, id, setValue, watch]);
 
-  console.log(cardValues);
-  const onSubmit = (values: AddToCardValues) => {
+  console.log(cartValues);
+  const onSubmit = (values: AddToCartValues) => {
     dispatch(addToCart({ ...productDetails, count: values.count }));
   };
   return (
@@ -75,9 +70,11 @@ const Product = () => {
           <div className="flex  flex-col gap-4 md:flex-row md:gap-8">
             <div className="flex  items-center gap-2">
               <p className=" font-semibold capitalize   md:text-xl">price : </p>
-              <p className="flex items-center   text-muted-foreground sm:text-lg md:text-xl">
-                <BsCurrencyDollar />
-                <span>{productDetails?.deepDetails.price}</span>
+              <p className="  text-muted-foreground sm:text-lg md:text-xl">
+                <span className="mr-1">
+                  {productDetails?.deepDetails.price}
+                </span>
+                <span className="uppercase">aed</span>
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -110,13 +107,15 @@ const Product = () => {
                 <button
                   type="button"
                   className="transition-transform hover:scale-90"
-                  onClick={() => setValue("count", Number(watch("count")) + 1)}
+                  onClick={() => setValue("count", watch("count") + 1)}
                 >
                   <CiSquarePlus className="h-12 w-12" />
                 </button>
                 <button
                   type="button"
-                  onClick={() => setValue("count", Number(watch("count")) - 1)}
+                  className="transition-transform hover:scale-90 disabled:hover:scale-100"
+                  disabled={watch("count") < 1}
+                  onClick={() => setValue("count", watch("count") - 1)}
                 >
                   <CiSquareMinus className="h-12 w-12" />
                 </button>
@@ -125,7 +124,7 @@ const Product = () => {
             {errors.count && (
               <p className="text-destructive">{errors.count.message}</p>
             )}
-            <Button type="submit"> add to card</Button>
+            <Button type="submit"> add to cart</Button>
           </form>
         </div>
       </div>

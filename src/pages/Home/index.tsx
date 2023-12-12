@@ -11,7 +11,12 @@ const Home = () => {
     <div>
       <LandingPage />
       <ProductSection />
-      <AboutUsInfo aboutUsContent={aboutUsInfo?.content} />
+      <section className="py-12">
+        <h2 className="mb-2  scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
+          {aboutUsInfo?.title}
+        </h2>
+        <AboutUsInfo aboutUsContent={aboutUsInfo?.content} />
+      </section>
       <ProductTypes />
     </div>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { MdOutlineAddShoppingCart, MdClose } from "react-icons/md";
-import { BsCurrencyDollar } from "react-icons/bs";
 
 import {
   DropdownMenu,
@@ -17,24 +16,24 @@ import { clearProduct, selectCartValues } from "@/features/cart/slice";
 import { Link } from "react-router-dom";
 
 const BasketMenu = () => {
-  const card = useAppSelector(selectCartValues);
+  const cart = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <div className="relative">
-          <p className="absolute -right-2 -top-4 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            {card.cartValues.reduce((acc, pre) => acc + pre.count, 0)}
+          <p className="absolute -right-1 -top-3  flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground  md:-right-2 md:-top-4 md:h-5 md:w-5">
+            {cart.cartValues.reduce((acc, pre) => acc + pre.count, 0)}
           </p>
-          <MdOutlineAddShoppingCart className="h-6 w-6" />
+          <MdOutlineAddShoppingCart className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>product in card</DropdownMenuLabel>
+        <DropdownMenuLabel>product in cart</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          {card.cartValues.map((cartValue) => (
+          {cart.cartValues.map((cartValue) => (
             <DropdownMenuItem>
               <div className="flex gap-2">
                 <div className="h-14 w-14">
@@ -50,9 +49,9 @@ const BasketMenu = () => {
                     <span> * </span>
                     <span>{cartValue.count}</span>
                   </p>
-                  <p className="flex items-center   text-muted-foreground ">
-                    <BsCurrencyDollar />
-                    <span>{cartValue?.deepDetails.price}</span>
+                  <p className="  text-muted-foreground ">
+                    <span className="mr-1">{cartValue?.deepDetails.price}</span>
+                    <span className="uppercase">aed</span>
                   </p>
                 </div>
                 <DropdownMenuShortcut>
@@ -73,11 +72,13 @@ const BasketMenu = () => {
           <div className="flex justify-between px-1 py-2">
             <p className="text-lg font-semibold capitalize">total:</p>
             <p>
-              {" "}
-              {card.cartValues.reduce(
-                (acc, pre) => acc + pre.count * Number(pre.deepDetails.price),
-                0,
-              )}
+              <span className="mr-1">
+                {cart.cartValues.reduce(
+                  (acc, pre) => acc + pre.count * Number(pre.deepDetails.price),
+                  0,
+                )}
+              </span>
+              <span className=" uppercase">aed</span>
             </p>
           </div>
           <div className=" flex gap-4 px-1 py-2">

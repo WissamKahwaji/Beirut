@@ -1,4 +1,7 @@
 import { useGetProductTypeQuery } from "@/api/products/queries";
+import { PRODUCT_TYPE_CAROUSAL_RESPONSIVE } from "@/constants";
+import Carousel from "react-multi-carousel";
+import { Link } from "react-router-dom";
 
 const ProductTypes = () => {
   const { data: productTypes } = useGetProductTypeQuery();
@@ -9,25 +12,37 @@ const ProductTypes = () => {
           product types
         </h2>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-4 ">
-        {productTypes?.slice(0, 4).map((productType) => (
-          <div
-            key={productType._id}
-            className="flex w-[250px] flex-col items-center gap-8 overflow-hidden sm:w-[280px] md:w-[320px]"
-          >
-            <div className=" w-full ">
-              <img
-                className="aspect-square h-full w-full object-cover"
-                src={productType.img}
-                alt={productType.name}
-              />
+      {/* <div className="flex flex-wrap items-center justify-center gap-4 "> */}
+      {productTypes && (
+        <Carousel
+          infinite
+          autoPlay
+          responsive={PRODUCT_TYPE_CAROUSAL_RESPONSIVE}
+        >
+          {productTypes?.map((productType) => (
+            <div className=" m-auto w-[250px] sm:w-[280px]  md:w-[320px]">
+              <Link to={`/product/${productType._id}`}>
+                <div
+                  key={productType._id}
+                  className="group flex  flex-col items-center gap-8 overflow-hidden  "
+                >
+                  <div className=" h-full  w-full overflow-hidden  ">
+                    <img
+                      className="aspect-square h-full w-full object-cover transition-transform group-hover:rotate-1 group-hover:scale-105"
+                      src={productType.img}
+                      alt={productType.name}
+                    />
+                  </div>
+                  <p className="text-sm font-semibold uppercase md:text-lg">
+                    {productType.name}
+                  </p>
+                </div>
+              </Link>
             </div>
-            <p className="text-sm font-semibold uppercase md:text-lg">
-              {productType.name}
-            </p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </Carousel>
+      )}
+      {/* </div> */}
     </section>
   );
 };

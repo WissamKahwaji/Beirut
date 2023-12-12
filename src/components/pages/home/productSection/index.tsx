@@ -1,5 +1,7 @@
 import { useGetProductsQuery } from "@/api/products/queries";
 import ProductCard from "@/components/items/productCard";
+import { CAROUSAL_RESPONSIVE } from "@/constants";
+import Carousel from "react-multi-carousel";
 
 const ProductSection = () => {
   const { data: products } = useGetProductsQuery();
@@ -10,12 +12,14 @@ const ProductSection = () => {
           feature projects
         </h2>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-10  md:gap-8 ">
-        {products
-          ?.slice(0, 3)
-          .map(({ _id, title, desc, img, deepDetails }) => (
-            <ProductCard {...{ id: _id, title, desc, img, deepDetails }} />
-          ))}
+      <div className="m-auto w-full lg:w-2/3 ">
+        {products && (
+          <Carousel infinite autoPlay responsive={CAROUSAL_RESPONSIVE}>
+            {products?.map((product) => (
+              <ProductCard key={product._id} {...product} />
+            ))}
+          </Carousel>
+        )}
       </div>
     </section>
   );

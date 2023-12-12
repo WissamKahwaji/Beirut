@@ -1,9 +1,3 @@
-import { DeepDetails } from "@/api/products/type";
+import { DeepDetails, Product } from "@/api/products/type";
 
-export type ProductCardProps = {
-  id: string;
-  img: string;
-  title: string;
-  desc: string;
-  deepDetails: DeepDetails;
-};
+export type ProductCardProps = Product;

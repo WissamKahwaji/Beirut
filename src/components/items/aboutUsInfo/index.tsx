@@ -19,9 +19,9 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContent) => {
             />
           </div>
           <div className="md:max-w-md">
-            <h2 className="mb-2  scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
+            {/* <h2 className="mb-2  scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
               {contactUs.title}
-            </h2>
+            </h2> */}
             <p className="text-muted-foreground">{contactUs.text}</p>
           </div>
         </div>

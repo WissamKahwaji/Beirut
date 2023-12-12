@@ -16,7 +16,7 @@ export type Product = {
 };
 
 export type DeepDetails = {
-  price: string;
+  price: number;
   weight: string;
 };
 

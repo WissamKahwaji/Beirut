@@ -8,12 +8,15 @@ const AboutUs = () => {
   if (isLoading) return <LoadingPage />;
   if (isError) return <div></div>;
   return (
-    <div className="pb-12 sm:pb-16 md:pb-24">
-      <AboutUsHeaderSection
+    <div className="py-12 sm:py-16 md:py-24">
+      <h2 className="mb-2  scroll-m-20 text-center text-3xl font-semibold uppercase tracking-tight first:mt-0 sm:mb-4 md:mb-8">
+        {aboutUsInfo?.title}
+      </h2>
+      {/* <AboutUsHeaderSection
         title={aboutUsInfo?.title!}
         description={aboutUsInfo?.description!}
         img={aboutUsInfo?.img!}
-      />
+      /> */}
       <AboutUsInfo aboutUsContent={aboutUsInfo?.content} />
     </div>
   );
