@@ -39,11 +39,11 @@ const CAROUSAL_RESPONSIVE = {
 const PRODUCT_TYPE_CAROUSAL_RESPONSIVE = {
   xxl: {
     breakpoint: { max: 5000, min: 1536 },
-    items: 5,
+    items: 4,
   },
   xl: {
     breakpoint: { max: 1536, min: 1280 },
-    items: 5,
+    items: 4,
   },
   lg: {
     breakpoint: { max: 1280, min: 1024 },
@@ -62,9 +62,18 @@ const PRODUCT_TYPE_CAROUSAL_RESPONSIVE = {
     items: 1,
   },
 };
+const ORDERS_TABLE_HEADER = [
+  "products",
+  "weight",
+  "amounts",
+  "total price",
+  "delete",
+];
+
 export {
   NAV_LINKS,
   DRAWER_LINKS,
   CAROUSAL_RESPONSIVE,
   PRODUCT_TYPE_CAROUSAL_RESPONSIVE,
+  ORDERS_TABLE_HEADER,
 };

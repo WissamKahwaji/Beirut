@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { Product } from "@/api/products/type";
+import { DeepDetails, Product } from "@/api/products/type";
 
 interface CartValue extends Product {
   count: number;
+  selectedWeightAndPrice: DeepDetails;
+  localId: string;
 }
 interface InitialState {
   cartValues: CartValue[];
@@ -14,26 +16,32 @@ const initialState: InitialState = persisCartValues
   : {
       cartValues: [],
     };
-console.log(JSON.parse(persisCartValues!));
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log(action.payload);
-      const product = action.payload;
-      const existProductIndex = state.cartValues.findIndex(
-        (productInCart) => productInCart._id === product._id,
-      );
-      if (existProductIndex !== -1) {
-        const existProductObject = state.cartValues[existProductIndex];
-        state.cartValues.splice(existProductIndex, 1, {
-          ...existProductObject,
-          count: action.payload.count,
-        });
-      } else {
-        state.cartValues.push(action.payload);
-      }
+      // const product = action.payload;
+      // const existProductIndex = state.cartValues.findIndex(
+      //   (productInCart) => productInCart._id === product._id,
+      // );
+      // if (existProductIndex !== -1) {
+      //   const existProductObject = state.cartValues[existProductIndex];
+      //   // if (
+      //   //   existProductObject.selectedWeightAndPrice.price ===
+      //   //   product.selectedWeightAndPrice.price
+      //   // ) {
+      //   state.cartValues.splice(existProductIndex, 1, {
+      //     ...existProductObject,
+      //     count: action.payload.count,
+      //     selectedWeightAndPrice: action.payload.selectedWeightAndPrice,
+      //   });
+      //   // } else {
+      //   //   state.cartValues.push(action.payload);
+      //   // }
+      // } else {
+      state.cartValues.push(action.payload);
+      // }
     },
     clearCart: (state, action) => {
       state.cartValues = [];
@@ -42,15 +50,49 @@ const cartSlice = createSlice({
       const productId = action.payload.id;
       return {
         cartValues: state.cartValues.filter(
-          (cartValue) => cartValue._id !== productId,
+          (cartValue) => cartValue.localId !== productId,
         ),
       };
+    },
+    changeWight: (state, action) => {
+      const productId = action.payload.id;
+      // const duplicatedProductIndex = state.cartValues.findIndex(
+      //   (cartValue) =>
+      //     cartValue._id === productId &&
+      //     Number(cartValue.selectedWeightAndPrice.price) ===
+      //       Number(action.payload.selectedWeightAndPrice.price),
+      // );
+      // if (duplicatedProductIndex!==-1) {
+
+      //   const duplicatedProduct=state.cartValues[duplicatedProductIndex]
+
+      //  state.cartValues.splice(duplicatedProductIndex,1)
+
+      // } else {
+      return {
+        cartValues: state.cartValues.map((cartValue, index) => {
+          if (
+            cartValue.localId === productId
+            // &&
+            // Number(cartValue.selectedWeightAndPrice.price) ===
+            //   Number(action.payload.oldWeightAndPrice.price)
+          ) {
+            return {
+              ...cartValue,
+              selectedWeightAndPrice: {
+                ...action.payload.selectedWeightAndPrice,
+              },
+            };
+          } else return cartValue;
+        }),
+      };
+      // }
     },
     changeByAmount: (state, action) => {
       const productId = action.payload.id;
       return {
         cartValues: state.cartValues.map((cartValue) =>
-          cartValue._id === productId
+          cartValue.localId === productId
             ? {
                 ...cartValue,
                 count: Number(cartValue.count) + Number(action.payload.amount),
@@ -59,11 +101,12 @@ const cartSlice = createSlice({
         ),
       };
     },
+
     incrementProductNumber: (state, action) => {
       const productId = action.payload.id;
       return {
         cartValues: state.cartValues.map((cartValue) =>
-          cartValue._id === productId
+          cartValue.localId === productId
             ? { ...cartValue, count: cartValue.count + 1 }
             : cartValue,
         ),
@@ -73,7 +116,7 @@ const cartSlice = createSlice({
       const productId = action.payload.id;
       return {
         cartValues: state.cartValues.map((cartValue) =>
-          cartValue._id === productId
+          cartValue.localId === productId
             ? { ...cartValue, count: cartValue.count - 1 }
             : cartValue,
         ),
@@ -86,6 +129,7 @@ export const {
   addToCart,
   clearCart,
   clearProduct,
+  changeWight,
   changeByAmount,
   incrementProductNumber,
   decrementProductNumber,

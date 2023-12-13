@@ -23,5 +23,7 @@ export type Content = {
   threads: string;
   snapChat: string;
   googleMap: string;
+  longitude: number;
+  latitude: number;
   __v: number;
 };

@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/app/hooks";
 import { addToCart } from "@/features/cart/slice";
+import classNames from "classnames";
 
 const ProductCart = (props: ProductCardProps) => {
-  const { _id, img, title, desc, deepDetails } = props;
+  const { _id, img, title, desc, deepDetails, isCarouselItem } = props;
   const dispatch = useAppDispatch();
   return (
-    <div className="m-auto flex w-[250px] flex-col px-4 sm:w-[280px] sm:gap-5 md:w-[320px]">
+    <div
+      className={classNames(
+        { "w-[250px] sm:w-[280px] md:w-[320px]": !isCarouselItem },
+        "   flex  flex-col px-4  sm:gap-5 ",
+      )}
+    >
       <Link to={`/product/${_id}`}>
         <div className="  group flex w-full  flex-col items-center gap-4 overflow-hidden  ">
           <div className="  relative w-full ">
@@ -32,13 +38,17 @@ const ProductCart = (props: ProductCardProps) => {
           </p>
 
           <p className=" text-sm text-muted-foreground md:text-lg lg:text-xl">
-            <span className="mr-1">{deepDetails.price}</span>
+            <span className="mr-1">{deepDetails?.[0]?.price}</span>
             <span className="uppercase">aed</span>
           </p>
         </div>
       </Link>
       <Button
-        onClick={() => dispatch(addToCart({ ...props, count: 1, wight: 1 }))}
+        onClick={() =>
+          dispatch(
+            addToCart({ ...props, count: 1, wight: 1, localId: new Date() }),
+          )
+        }
       >
         add to cart
       </Button>

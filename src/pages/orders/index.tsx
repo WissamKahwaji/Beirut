@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { MdDelete } from "react-icons/md";
-
 import {
   Table,
   TableBody,
@@ -11,7 +8,7 @@ import {
 } from "@/components/ui/table";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import {
-  clearProduct,
+  changeWight,
   decrementProductNumber,
   incrementProductNumber,
   selectCartValues,
@@ -21,11 +18,11 @@ import RemoveProductFromCartDialog from "@/components/pages/orders/removeProduct
 import ClearCartDialog from "@/components/pages/orders/clearCartDialog";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-const ORDERS_TABLE_HEADER = ["products", "price", "amounts", "delete"];
+import { ORDERS_TABLE_HEADER } from "@/constants";
 const Orders = () => {
   const cartValues = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
-
+  console.log(cartValues);
   return (
     <div className="m-auto max-w-6xl py-12 md:py-24 ">
       <Table>
@@ -56,7 +53,7 @@ const Orders = () => {
                     </p>
                     <p className=" text-muted-foreground ">
                       <span className="mr-1">
-                        {cartValue?.deepDetails.price}
+                        {cartValue?.selectedWeightAndPrice.price}
                       </span>
                       <span className="uppercase">aed</span>
                     </p>
@@ -64,12 +61,34 @@ const Orders = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <p>
-                  <span className="mr-1">
-                    {cartValue.deepDetails.price * cartValue.count}
-                  </span>
-                  <span className=" uppercase">aed</span>
-                </p>
+                <div className="flex gap-1">
+                  {cartValue?.deepDetails.map((deepDetail, index) => (
+                    <Button
+                      variant={
+                        cartValue?.deepDetails.findIndex(
+                          (deepDetail) =>
+                            deepDetail.price ===
+                            cartValue.selectedWeightAndPrice?.price,
+                        ) === index
+                          ? "default"
+                          : "outline"
+                      }
+                      type="button"
+                      key={index}
+                      onClick={(e) => {
+                        dispatch(
+                          changeWight({
+                            id: cartValue.localId,
+                            selectedWeightAndPrice: deepDetail,
+                            oldWeightAndPrice: cartValue.selectedWeightAndPrice,
+                          }),
+                        );
+                      }}
+                    >
+                      {deepDetail.weight}Kg
+                    </Button>
+                  ))}
+                </div>
               </TableCell>
               <TableCell>
                 <div className="flex items-center ">
@@ -77,7 +96,9 @@ const Orders = () => {
                     type="button"
                     className="transition-transform hover:scale-90"
                     onClick={() => {
-                      dispatch(incrementProductNumber({ id: cartValue._id }));
+                      dispatch(
+                        incrementProductNumber({ id: cartValue.localId }),
+                      );
                     }}
                   >
                     <CiSquarePlus className="h-10 w-10 md:h-12 md:w-12" />
@@ -102,7 +123,9 @@ const Orders = () => {
                     disabled={cartValue.count <= 1}
                     className="transition-transform hover:scale-90 disabled:text-muted-foreground disabled:hover:scale-100"
                     onClick={() =>
-                      dispatch(decrementProductNumber({ id: cartValue._id }))
+                      dispatch(
+                        decrementProductNumber({ id: cartValue.localId }),
+                      )
                     }
                   >
                     <CiSquareMinus className="h-10 w-10 md:h-12 md:w-12" />
@@ -110,9 +133,18 @@ const Orders = () => {
                 </div>
               </TableCell>
               <TableCell>
+                <p>
+                  <span className="mr-1">
+                    {Number(cartValue.selectedWeightAndPrice.price) *
+                      cartValue.count}
+                  </span>
+                  <span className=" uppercase">aed</span>
+                </p>
+              </TableCell>
+              <TableCell>
                 <RemoveProductFromCartDialog
                   productTitle={cartValue.title}
-                  id={cartValue._id}
+                  id={cartValue.localId}
                 />
               </TableCell>
             </TableRow>
@@ -125,7 +157,8 @@ const Orders = () => {
           <p className="text-muted-foreground">
             <span className="mr-1 ">
               {cartValues.cartValues.reduce(
-                (acc, pre) => acc + pre.count * pre.deepDetails.price,
+                (acc, pre) =>
+                  acc + pre.count * Number(pre.selectedWeightAndPrice.price),
                 0,
               )}
             </span>

@@ -14,9 +14,12 @@ const ProductSection = () => {
       </div>
       <div className="m-auto w-full lg:w-2/3 ">
         {products && (
-          <Carousel responsive={CAROUSAL_RESPONSIVE}>
+          <Carousel infinite autoPlay responsive={CAROUSAL_RESPONSIVE}>
             {products?.map((product) => (
-              <ProductCard key={product._id} {...product} />
+              <ProductCard
+                key={product._id}
+                {...{ ...product, isCarouselItem: true }}
+              />
             ))}
           </Carousel>
         )}

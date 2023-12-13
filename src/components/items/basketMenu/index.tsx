@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { MdOutlineAddShoppingCart, MdClose } from "react-icons/md";
 
 import {
@@ -13,15 +13,17 @@ import {
 } from "@/components/ui/dropdownMenu";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { clearProduct, selectCartValues } from "@/features/cart/slice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BasketMenu = () => {
+  const navigate = useNavigate();
   const cart = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
+  const ref = useRef<HTMLButtonElement>(null!);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger ref={ref}>
         <div className="relative">
           <p className="absolute -right-1 -top-3  flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground  md:-right-2 md:-top-4 md:h-5 md:w-5">
             {cart.cartValues.reduce((acc, pre) => acc + pre.count, 0)}
@@ -50,14 +52,16 @@ const BasketMenu = () => {
                     <span>{cartValue.count}</span>
                   </p>
                   <p className="  text-muted-foreground ">
-                    <span className="mr-1">{cartValue?.deepDetails.price}</span>
+                    <span className="mr-1">
+                      {cartValue?.selectedWeightAndPrice.price}
+                    </span>
                     <span className="uppercase">aed</span>
                   </p>
                 </div>
                 <DropdownMenuShortcut>
                   <button
                     onClick={() =>
-                      dispatch(clearProduct({ id: cartValue._id }))
+                      dispatch(clearProduct({ id: cartValue.localId }))
                     }
                   >
                     <MdClose />
@@ -74,7 +78,8 @@ const BasketMenu = () => {
             <p>
               <span className="mr-1">
                 {cart.cartValues.reduce(
-                  (acc, pre) => acc + pre.count * Number(pre.deepDetails.price),
+                  (acc, pre) =>
+                    acc + pre.count * Number(pre.selectedWeightAndPrice.price),
                   0,
                 )}
               </span>
@@ -82,18 +87,18 @@ const BasketMenu = () => {
             </p>
           </div>
           <div className=" flex gap-4 px-1 py-2">
-            <Link
-              to={"/orders"}
+            <DropdownMenuItem
               className="border border-border px-2 py-1 uppercase"
+              onClick={() => navigate("/orders")}
             >
               view orders
-            </Link>
-            <Link
-              to={"/"}
+            </DropdownMenuItem>
+            <DropdownMenuItem
               className="border border-border bg-primary  px-2 py-1 uppercase text-primary-foreground"
+              onClick={() => navigate("/")}
             >
-              check out
-            </Link>
+              check out{" "}
+            </DropdownMenuItem>
           </div>
         </DropdownMenuGroup>
       </DropdownMenuContent>

@@ -27,23 +27,44 @@ const Product = () => {
   } = useForm<AddToCartValues>({
     resolver: zodResolver(addToCartValidationSchema),
     defaultValues: {
-      count:
-        cartValues.cartValues.find((productInCart) => productInCart._id === id)
-          ?.count ?? 0,
+      count: 0,
+      // cartValues.cartValues.find((productInCart) => productInCart._id === id)
+      //   ?.count ?? 0,
+      selectedWeightAndPrice: {},
+      // cartValues.cartValues.find((productInCart) => productInCart._id === id)
+      //   ?.selectedWeightAndPrice ?? productDetails?.deepDetails[0],
     },
   });
   useEffect(() => {
-    setValue(
-      "count",
-      cartValues.cartValues.find((productInCart) => productInCart._id === id)
-        ?.count ?? 0,
-    );
-  }, [cartValues, id, setValue, watch]);
+    productDetails &&
+      setValue("selectedWeightAndPrice", productDetails?.deepDetails[0]);
+  }, [productDetails, setValue]);
 
-  console.log(cartValues);
+  // useEffect(() => {
+  //   setValue(
+  //     "count",
+  //     cartValues.cartValues.find((productInCart) => productInCart._id === id)
+  //       ?.count ?? 0,
+  //   );
+  //   productDetails &&
+  //     setValue(
+  //       "selectedWeightAndPrice",
+  //       cartValues.cartValues.find((productInCart) => productInCart._id === id)
+  //         ?.selectedWeightAndPrice ?? productDetails?.deepDetails[0],
+  //     );
+  // }, [cartValues, id, setValue, watch, productDetails]);
   const onSubmit = (values: AddToCartValues) => {
-    dispatch(addToCart({ ...productDetails, count: values.count }));
+    console.log("enter submit area");
+    dispatch(
+      addToCart({
+        ...productDetails,
+        count: values.count,
+        selectedWeightAndPrice: values.selectedWeightAndPrice,
+        localId: new Date(),
+      }),
+    );
   };
+
   return (
     <div className=" py-24 ">
       <div className="  flex flex-col justify-center gap-4 bg-gray-background px-6 py-4 md:flex-row md:gap-6 ">
@@ -72,7 +93,7 @@ const Product = () => {
               <p className=" font-semibold capitalize   md:text-xl">price : </p>
               <p className="  text-muted-foreground sm:text-lg md:text-xl">
                 <span className="mr-1">
-                  {productDetails?.deepDetails.price}
+                  {watch("selectedWeightAndPrice")?.price}
                 </span>
                 <span className="uppercase">aed</span>
               </p>
@@ -80,7 +101,7 @@ const Product = () => {
             <div className="flex items-center gap-2">
               <p className=" font-semibold capitalize   md:text-xl">wight : </p>
               <p className="flex items-center   text-muted-foreground sm:text-lg md:text-xl">
-                <span>{productDetails?.deepDetails?.weight}</span>
+                {watch("selectedWeightAndPrice")?.weight}
                 <span className="uppercase">kg</span>
               </p>
             </div>
@@ -92,14 +113,35 @@ const Product = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col  gap-8"
           >
-            <div className="flex items-center justify-center gap-4">
+            {/* <div> */}
+            <div className="flex gap-1">
+              {productDetails?.deepDetails.map((deepDetail, index) => (
+                <Button
+                  variant={
+                    productDetails?.deepDetails.findIndex(
+                      (deepDetail) =>
+                        deepDetail.price ===
+                        watch("selectedWeightAndPrice")?.price,
+                    ) === index
+                      ? "default"
+                      : "outline"
+                  }
+                  type="button"
+                  key={index}
+                  onClick={(e) => {
+                    setValue("selectedWeightAndPrice", deepDetail);
+                  }}
+                >
+                  {deepDetail.weight}Kg
+                </Button>
+              ))}
+            </div>
+            <div className="flex items-center gap-4">
               <input
                 type="number"
                 name="count"
                 value={watch("count")}
                 onChange={(e) => setValue("count", Number(e.target.value))}
-                // {...register("count")}
-
                 className="border bg-background p-2 px-4 shadow-sm"
               />
 
@@ -121,6 +163,7 @@ const Product = () => {
                 </button>
               </div>
             </div>
+            {/* </div> */}
             {errors.count && (
               <p className="text-destructive">{errors.count.message}</p>
             )}

@@ -6,7 +6,7 @@ export type ProductType = {
 };
 export type Product = {
   imgs: Imgs;
-  deepDetails: DeepDetails;
+  deepDetails: DeepDetails[];
   _id: string;
   img: string;
   title: string;
@@ -16,7 +16,7 @@ export type Product = {
 };
 
 export type DeepDetails = {
-  price: number;
+  price: string;
   weight: string;
 };
 

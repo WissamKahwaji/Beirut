@@ -13,10 +13,12 @@ import {
 import { ProductType } from "@/api/products/type";
 import { NAV_LINKS } from "@/constants";
 import TypographyLarge from "@/components/ui/typographyLarge";
-import { Logo } from "@/api/common/type";
+import { Logo as TLogo } from "@/api/common/type";
 import Drawer from "../../components/items/Drawer";
 import { BsList } from "react-icons/bs";
 import BasketMenu from "@/components/items/basketMenu";
+import Name from "@/components/ui/svg/name";
+import Logo from "@/components/ui/svg/logo";
 
 const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -24,7 +26,7 @@ const Navbar = () => {
   const productTypes: ProductType[] | undefined = queryClient.getQueryData([
     "product-types",
   ]);
-  const logo: Logo | undefined = queryClient.getQueryData(["get-logo"]);
+  const logo: TLogo | undefined = queryClient.getQueryData(["get-logo"]);
   const handleOpenDrawer = () => {
     setOpen(true);
   };
@@ -33,26 +35,19 @@ const Navbar = () => {
   };
   return (
     <>
-      <header className="fixed left-0 top-0 z-10 w-screen border-b border-border bg-background px-4 py-3 shadow-sm md:px-8 md:py-6 ">
-        <nav className=" flex items-center justify-between  ">
-          <Link to={"/"} className="hidden md:block">
-            <div className="flex">
-              <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
-                <img
-                  className=" aspect-square h-full w-full object-cover "
-                  src={"/logo.svg"}
-                  alt="logo"
-                />
-              </div>
-              <div className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 ">
-                <img
-                  className=" aspect-square h-full w-full object-cover "
-                  src={"/logoName.svg"}
-                  alt="logo"
-                />
-              </div>
+      <header className="fixed  left-0 top-0 z-[1001] w-screen border-b border-border bg-background px-4 py-3 shadow-sm md:px-8 md:py-6 ">
+        <nav className="  flex items-center justify-between  ">
+          <div className="relative hidden  md:block">
+            <div className="absolute -top-7 left-0">
+              <Link to={"/"} className="">
+                <div className="flex justify-start ">
+                  <Logo className="  h-10 w-10 sm:h-12 sm:w-12  md:h-14 md:w-14 lg:h-24 lg:w-24 " />
+
+                  <Name className="  h-10 w-10 sm:h-12 sm:w-12  md:w-14 lg:h-24 lg:w-24 " />
+                </div>
+              </Link>
             </div>
-          </Link>
+          </div>
           <div className=" flex gap-8">
             <button className="md:hidden" onClick={handleOpenDrawer}>
               <BsList className=" h-10 w-10 transition-transform hover:scale-110 " />

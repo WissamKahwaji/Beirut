@@ -1,10 +1,13 @@
 import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ProductType } from "@/api/products/type";
 import { NAV_LINKS } from "@/constants";
-import { Logo } from "@/api/common/type";
 import { useGetContactUsInfo } from "@/api/constactUs/queries";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
 import {
   FaFacebookSquare,
   FaInstagramSquare,
@@ -13,16 +16,34 @@ import {
   FaSnapchatSquare,
 } from "react-icons/fa";
 import { FaSquareThreads } from "react-icons/fa6";
-
+import Logo from "@/components/ui/svg/logo";
+import Name from "@/components/ui/svg/name";
+var myIcon = L.icon({
+  iconUrl: "/logo.svg",
+  iconSize: [38, 95],
+  iconAnchor: [22, 94],
+  popupAnchor: [-3, -76],
+  // shadowUrl: "my-icon-shadow.png",
+  shadowSize: [68, 95],
+  shadowAnchor: [22, 94],
+});
 const Footer = () => {
+  const { pathname } = useLocation();
   const queryClient = useQueryClient();
   const { data: contactUsInfo } = useGetContactUsInfo();
   const productTypes: ProductType[] | undefined = queryClient.getQueryData([
     "product-types",
   ]);
-  const logo: Logo | undefined = queryClient.getQueryData(["get-logo"]);
+
   return (
-    <div className="flex flex-col justify-center gap-16 border-t  border-border px-12 py-16  shadow-negative  md:flex-row ">
+    <div className="flex flex-col justify-between gap-16 border-t  border-border px-12 py-16  shadow-negative  md:flex-row ">
+      <Link to={"/"} className="">
+        <div className="flex flex-row md:flex-col ">
+          <Logo className=" h-24 w-24 " />
+
+          <Name className=" h-24 w-24 " />
+        </div>
+      </Link>
       <div className=" flex gap-16">
         <div>
           <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
@@ -126,6 +147,34 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+      {contactUsInfo && (
+        <div className=" w-full">
+          <MapContainer
+            key={pathname}
+            className="aspect-video h-full w-full"
+            center={[
+              Number(contactUsInfo?.content.longitude),
+              Number(contactUsInfo?.content.latitude),
+            ]}
+            zoom={13}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker
+              icon={myIcon}
+              position={[
+                Number(contactUsInfo?.content.longitude),
+                Number(contactUsInfo?.content.latitude),
+              ]}
+            >
+              <Popup>{""}</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+      )}
     </div>
   );
 };

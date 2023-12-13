@@ -20,7 +20,7 @@ const ProductTypes = () => {
           responsive={PRODUCT_TYPE_CAROUSAL_RESPONSIVE}
         >
           {productTypes?.map((productType) => (
-            <div className=" m-auto w-[250px] sm:w-[280px]  md:w-[320px]">
+            <div className=" px-12  ">
               <Link to={`/product/${productType._id}`}>
                 <div
                   key={productType._id}
