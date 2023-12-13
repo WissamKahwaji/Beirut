@@ -17,6 +17,7 @@ const ProductTypes = () => {
         <Carousel
           infinite
           autoPlay
+          removeArrowOnDeviceType={"xs"}
           responsive={PRODUCT_TYPE_CAROUSAL_RESPONSIVE}
         >
           {productTypes?.map((productType) => (

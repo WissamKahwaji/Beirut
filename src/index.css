@@ -83,3 +83,6 @@
       "calt" 1;
   }
 }
+.react-multi-carousel-list {
+  position: unset !important;
+}

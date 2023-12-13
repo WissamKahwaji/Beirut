@@ -81,14 +81,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div>
-        <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
-          locations
-        </p>
-        <p className="font-semibold md:w-56 ">
-          {contactUsInfo?.content.location}
-        </p>
-      </div>
+
       <div>
         <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
           contact us
@@ -109,6 +102,14 @@ const Footer = () => {
         </ul>
       </div>
       <div>
+        <div className="pb-4">
+          <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
+            locations
+          </p>
+          <p className="font-semibold md:w-56 ">
+            {contactUsInfo?.content.location}
+          </p>
+        </div>
         <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
           social media
         </p>
