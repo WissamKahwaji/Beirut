@@ -18,7 +18,7 @@ const ProductCart = (props: ProductCardProps) => {
       )}
     >
       <Link to={`/product/${_id}`}>
-        <div className="  group flex w-full  flex-col items-center gap-4 overflow-hidden  ">
+        <div className="  group flex w-full  flex-col items-center gap-4   ">
           <div className="  relative w-full ">
             <div className="absolute left-0 top-0 flex h-0 w-full items-center justify-center bg-border/50  transition-all duration-500 group-hover:h-full  ">
               <p className=" hidden bg-background text-center opacity-100 group-hover:block">
@@ -33,7 +33,7 @@ const ProductCart = (props: ProductCardProps) => {
             />
           </div>
 
-          <p className="overflow-hidden overflow-ellipsis whitespace-nowrap text-sm font-semibold uppercase md:text-lg">
+          <p className=" w-full overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-semibold uppercase md:text-lg">
             {title}
           </p>
 
