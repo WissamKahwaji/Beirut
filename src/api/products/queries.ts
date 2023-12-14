@@ -11,7 +11,7 @@ const useGetProductsQuery = () =>
   useQuery({ queryKey: ["products"], queryFn: () => getProducts() });
 const useGetProductsByTypeQuery = (params: GetProductParams) =>
   useQuery({
-    queryKey: ["products-by-type"],
+    queryKey: ["products-by-type", params.type],
     queryFn: () => getProductsByType(params),
   });
 const useGetProductTypeQuery = () =>
