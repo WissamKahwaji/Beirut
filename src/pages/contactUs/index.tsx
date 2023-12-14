@@ -73,7 +73,7 @@ const ContactUs = () => {
               <li>
                 <p className="flex items-center gap-2 font-semibold">
                   <FaPhone />
-                  <span>{contactUsInfo?.content.mobileTwo}</span>
+                  <span>{contactUsInfo?.content.phoneNumber}</span>
                 </p>
               </li>
             </ul>
