@@ -1,5 +1,6 @@
 const PRODUCTS = {
   GET_PRODUCTS: "/products",
+  GET_PRODUCTS_BY_TYPE: "/products/type-products",
   GET_PRODUCT_TYPES: "/products/product-type",
   GET_PRODUCT_DETAILS: (id: string | undefined) => `/products/byid/${id}`,
 };

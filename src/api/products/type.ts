@@ -25,3 +25,12 @@ export type Imgs = {
   second: null;
   third: null;
 };
+export type ProductByType = {
+  _id: string;
+  name: string;
+  img: string;
+  products: Product[];
+};
+export type GetProductParams = {
+  type: string | null;
+};

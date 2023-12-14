@@ -12,7 +12,7 @@ const ProductSection = () => {
           feature projects
         </h2>
       </div>
-      <div className="m-auto w-full lg:w-2/3 ">
+      <div className="m-auto w-full lg:w-3/4 ">
         {products && (
           <Carousel
             infinite

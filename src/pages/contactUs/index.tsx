@@ -39,22 +39,13 @@ const ContactUs = () => {
   const onSubmit = (values: ContactUsValues) => {};
   return (
     <div className="">
-      <div className=" h-96 ">
-        <img
-          src={
-            "https://i.shgcdn.com/a90493a9-2ee1-481a-843c-9cbbcd3fc122/-/format/auto/-/preview/3000x3000/-/quality/lighter/-/resize/1920x/"
-          }
-          className="aspect-square h-full w-full object-cover"
-          alt={""}
-        />
-      </div>
       <div className=" p-6 px-4">
         <h2 className="sm:2xl scroll-m-20 pb-2 text-center  text-xl font-semibold uppercase tracking-tight first:mt-0 md:text-3xl">
           {"contact us"}
         </h2>
       </div>
       <div className="mx-2 mb-12 flex flex-col justify-center gap-16 md:flex-row  ">
-        <div className="flex flex-col bg-gray-background p-8">
+        <div className="flex flex-col gap-8 bg-gray-background p-8 md:gap-16">
           <div>
             <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
               locations
@@ -65,7 +56,7 @@ const ContactUs = () => {
             <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
               contact info
             </p>
-            <ul className="flex flex-col justify-center gap-2">
+            <ul className="flex flex-col justify-center gap-4">
               <li>
                 <p className="flex items-center gap-2  font-semibold">
                   <MdEmail />

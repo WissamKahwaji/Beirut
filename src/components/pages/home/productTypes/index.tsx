@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ProductTypes = () => {
   const { data: productTypes } = useGetProductTypeQuery();
   return (
-    <section className=" flex flex-col gap-16 bg-gray-background py-12 ">
+    <section className=" flex flex-col gap-8 bg-gray-background py-12 md:gap-16 ">
       <div>
         <h2 className="sm:2xl  scroll-m-20 pb-2 text-center text-xl font-semibold uppercase tracking-tight first:mt-0 md:text-3xl">
           product types
@@ -21,8 +21,10 @@ const ProductTypes = () => {
           responsive={PRODUCT_TYPE_CAROUSAL_RESPONSIVE}
         >
           {productTypes?.map((productType) => (
-            <div className=" px-12  ">
-              <Link to={`/product/${productType._id}`}>
+            <div className=" px-3 sm:px-6 md:px-9 lg:px-12  ">
+              <Link
+                to={`/products?type_id=${productType._id}&type=${productType.name}`}
+              >
                 <div
                   key={productType._id}
                   className="group flex  flex-col items-center gap-8 overflow-hidden  "

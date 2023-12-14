@@ -19,11 +19,10 @@ const BasketMenu = () => {
   const navigate = useNavigate();
   const cart = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
-  const ref = useRef<HTMLButtonElement>(null!);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger ref={ref}>
+      <DropdownMenuTrigger asChild>
         <div className="relative">
           <p className="absolute -right-1 -top-3  flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground  md:-right-2 md:-top-4 md:h-5 md:w-5">
             {cart.cartValues.reduce((acc, pre) => acc + pre.count, 0)}

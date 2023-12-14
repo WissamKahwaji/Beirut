@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./layout/header";
 import Footer from "./layout/footer";
 import { useGetProductTypeQuery } from "./api/products/queries";
@@ -10,6 +10,7 @@ import "./App.css";
 import "react-multi-carousel/lib/styles.css";
 
 function App() {
+  const { pathname } = useLocation();
   const cartValues = useAppSelector(selectCartValues);
   useGetProductTypeQuery();
   useGetLogo();
@@ -17,8 +18,8 @@ function App() {
     localStorage.setItem("cartValues", JSON.stringify(cartValues));
   }, [cartValues]);
   useEffect(() => {
-    document.body.scrollTo(0, 0);
-  });
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <div className="App">
       <Navbar />

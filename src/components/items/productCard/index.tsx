@@ -13,8 +13,8 @@ const ProductCart = (props: ProductCardProps) => {
   return (
     <div
       className={classNames(
-        { "w-[250px] sm:w-[280px] md:w-[320px]": !isCarouselItem },
-        "   flex  flex-col px-4  sm:gap-5 ",
+        // { "w-[250px] sm:w-[280px] md:w-[320px]": !isCarouselItem },
+        "   flex  flex-col gap-3 px-4 sm:gap-5 ",
       )}
     >
       <Link to={`/product/${_id}`}>
@@ -44,6 +44,7 @@ const ProductCart = (props: ProductCardProps) => {
         </div>
       </Link>
       <Button
+        size={"sm"}
         onClick={() =>
           dispatch(
             addToCart({ ...props, count: 1, wight: 1, localId: new Date() }),

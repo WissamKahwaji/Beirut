@@ -1,3 +1,5 @@
+import L from "leaflet";
+
 const NAV_LINKS = [
   { label: "about us", href: "/about-us" },
   { label: "orders", href: "/orders" },
@@ -33,7 +35,7 @@ const CAROUSAL_RESPONSIVE = {
   },
   xs: {
     breakpoint: { max: 640, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 const PRODUCT_TYPE_CAROUSAL_RESPONSIVE = {
@@ -59,7 +61,7 @@ const PRODUCT_TYPE_CAROUSAL_RESPONSIVE = {
   },
   xs: {
     breakpoint: { max: 640, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 const ORDERS_TABLE_HEADER = [
@@ -69,11 +71,19 @@ const ORDERS_TABLE_HEADER = [
   "total price",
   "delete",
 ];
-
+var MAP_INDICATOR_ICON = L.icon({
+  iconUrl: "/logo.svg",
+  iconSize: [38, 95],
+  iconAnchor: [22, 94],
+  popupAnchor: [-3, -76],
+  shadowSize: [68, 95],
+  shadowAnchor: [22, 94],
+});
 export {
   NAV_LINKS,
   DRAWER_LINKS,
   CAROUSAL_RESPONSIVE,
   PRODUCT_TYPE_CAROUSAL_RESPONSIVE,
   ORDERS_TABLE_HEADER,
+  MAP_INDICATOR_ICON,
 };

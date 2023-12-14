@@ -2,7 +2,7 @@ import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Link, useLocation } from "react-router-dom";
 import { ProductType } from "@/api/products/type";
-import { NAV_LINKS } from "@/constants";
+import { MAP_INDICATOR_ICON, NAV_LINKS } from "@/constants";
 import { useGetContactUsInfo } from "@/api/constactUs/queries";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
@@ -12,21 +12,12 @@ import {
   FaFacebookSquare,
   FaInstagramSquare,
   FaWhatsappSquare,
-  FaLinkedin,
   FaSnapchatSquare,
 } from "react-icons/fa";
 import { FaSquareThreads } from "react-icons/fa6";
 import Logo from "@/components/ui/svg/logo";
 import Name from "@/components/ui/svg/name";
-var myIcon = L.icon({
-  iconUrl: "/logo.svg",
-  iconSize: [38, 95],
-  iconAnchor: [22, 94],
-  popupAnchor: [-3, -76],
-  // shadowUrl: "my-icon-shadow.png",
-  shadowSize: [68, 95],
-  shadowAnchor: [22, 94],
-});
+
 const Footer = () => {
   const { pathname } = useLocation();
   const queryClient = useQueryClient();
@@ -36,9 +27,14 @@ const Footer = () => {
   ]);
 
   return (
-    <div className="flex flex-col justify-between gap-16 border-t  border-border px-12 py-16  shadow-negative  md:flex-row ">
+    <div className="flex flex-col justify-between gap-8 border-t border-border  px-6 py-8 shadow-negative md:flex-row md:gap-16  md:px-12  md:py-16 ">
+      <div className="fixed bottom-20 right-10 z-[2000] h-12 w-12 rounded-md bg-background shadow-md transition-transform hover:scale-110 md:h-16 md:w-16">
+        <Link to={contactUsInfo?.content.whatsApp ?? ""} target="_blank">
+          <FaWhatsappSquare className="h-full w-full" />
+        </Link>
+      </div>
       <Link to={"/"} className="">
-        <div className="flex flex-row md:flex-col ">
+        <div className="flex flex-row  ">
           <Logo className=" h-24 w-24 " />
 
           <Name className=" h-24 w-24 " />
@@ -100,17 +96,7 @@ const Footer = () => {
             <p className="font-semibold">{contactUsInfo?.content.mobileTwo}</p>
           </li>
         </ul>
-      </div>
-      <div>
-        <div className="pb-4">
-          <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
-            locations
-          </p>
-          <p className="font-semibold md:w-56 ">
-            {contactUsInfo?.content.location}
-          </p>
-        </div>
-        <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
+        <p className="my-6 text-xl font-semibold capitalize text-gray-400">
           social media
         </p>
         <ul className="mb-2 flex gap-2">
@@ -124,18 +110,7 @@ const Footer = () => {
               <FaInstagramSquare className="h-8 w-8" />
             </Link>
           </li>
-          <li>
-            <Link to={contactUsInfo?.content.whatsApp ?? ""} target="_blank">
-              <FaWhatsappSquare className="h-8 w-8" />
-            </Link>
-          </li>
-        </ul>
-        <ul className="flex gap-2">
-          <li>
-            <Link to={contactUsInfo?.content.linkedIn ?? ""} target="_blank">
-              <FaLinkedin className="h-8 w-8" />
-            </Link>
-          </li>
+
           <li>
             <Link to={contactUsInfo?.content.threads ?? ""} target="_blank">
               <FaSquareThreads className="h-8 w-8" />
@@ -148,34 +123,42 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      {contactUsInfo && (
-        <div className=" w-full">
-          <MapContainer
-            key={pathname}
-            className="aspect-video h-full w-full"
-            center={[
-              Number(contactUsInfo?.content.longitude),
-              Number(contactUsInfo?.content.latitude),
-            ]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker
-              icon={myIcon}
-              position={[
+      <div className="flex  flex-col">
+        {contactUsInfo && (
+          <div className=" w-full">
+            <MapContainer
+              key={pathname}
+              className="aspect-video h-full w-full"
+              center={[
                 Number(contactUsInfo?.content.longitude),
                 Number(contactUsInfo?.content.latitude),
               ]}
+              zoom={13}
+              scrollWheelZoom={false}
             >
-              <Popup>{""}</Popup>
-            </Marker>
-          </MapContainer>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+                icon={MAP_INDICATOR_ICON}
+                position={[
+                  Number(contactUsInfo?.content.longitude),
+                  Number(contactUsInfo?.content.latitude),
+                ]}
+              >
+                <Popup>{""}</Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+        )}
+        <div className="pt-4">
+          <p className="mb-6 text-xl font-semibold capitalize text-gray-400">
+            locations
+          </p>
+          <p className="font-semibold  ">{contactUsInfo?.content.location}</p>
         </div>
-      )}
+      </div>
     </div>
   );
 };
