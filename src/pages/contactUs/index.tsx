@@ -63,12 +63,7 @@ const ContactUs = () => {
                   <span>{contactUsInfo?.content.email}</span>
                 </p>
               </li>
-              <li>
-                <p className="flex items-center gap-2  font-semibold">
-                  <MdEmail />
-                  <span>{contactUsInfo?.content.emailOne}</span>
-                </p>
-              </li>
+
               <li>
                 <p className=" flex items-center gap-2 font-semibold">
                   <FaPhone />
@@ -104,22 +99,7 @@ const ContactUs = () => {
                   <FaInstagramSquare className="h-8 w-8 transition-transform hover:scale-105 md:h-12 md:w-12" />
                 </Link>
               </li>
-              <li>
-                <Link
-                  to={contactUsInfo?.content.whatsApp ?? ""}
-                  target="_blank"
-                >
-                  <FaWhatsappSquare className="h-8 w-8 transition-transform hover:scale-105 md:h-12 md:w-12" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={contactUsInfo?.content.linkedIn ?? ""}
-                  target="_blank"
-                >
-                  <FaLinkedin className="h-8 w-8 transition-transform hover:scale-105 md:h-12 md:w-12" />
-                </Link>
-              </li>
+
               <li>
                 <Link to={contactUsInfo?.content.threads ?? ""} target="_blank">
                   <FaSquareThreads className="h-8 w-8 transition-transform hover:scale-105 md:h-12 md:w-12" />

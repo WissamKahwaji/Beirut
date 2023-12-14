@@ -28,8 +28,14 @@ const Footer = () => {
 
   return (
     <div className="flex flex-col justify-between gap-8 border-t border-border  px-6 py-8 shadow-negative md:flex-row md:gap-16  md:px-12  md:py-16 ">
-      <div className="fixed bottom-20 right-10 z-[2000] h-12 w-12 rounded-md bg-background shadow-md transition-transform hover:scale-110 md:h-16 md:w-16">
-        <Link to={contactUsInfo?.content.whatsApp ?? ""} target="_blank">
+      <div className="fixed bottom-20 right-10 z-[1001] h-12 w-12 rounded-md bg-background shadow-md transition-transform hover:scale-110 md:bottom-10 md:h-16 md:w-16">
+        <Link
+          to={
+            `https://web.whatsapp.com/send?phone=${contactUsInfo?.content.whatsApp}` ??
+            ""
+          }
+          target="_blank"
+        >
           <FaWhatsappSquare className="h-full w-full" />
         </Link>
       </div>
@@ -86,14 +92,14 @@ const Footer = () => {
           <li>
             <p className="font-semibold">{contactUsInfo?.content.email}</p>
           </li>
-          <li>
-            <p className="font-semibold">{contactUsInfo?.content.emailOne}</p>
-          </li>
+
           <li>
             <p className="font-semibold">{contactUsInfo?.content.mobileOne}</p>
           </li>
           <li>
-            <p className="font-semibold">{contactUsInfo?.content.mobileTwo}</p>
+            <p className="font-semibold">
+              {contactUsInfo?.content.phoneNumber}
+            </p>
           </li>
         </ul>
         <p className="my-6 text-xl font-semibold capitalize text-gray-400">

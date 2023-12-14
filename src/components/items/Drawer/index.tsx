@@ -23,12 +23,12 @@ const Drawer = ({ handleClose, open }: DrawerProps) => {
     };
   }, [open]);
   return (
-    <Portal.Root className="absolute bottom-0 left-0 right-0 top-0  z-20">
+    <Portal.Root className="absolute bottom-0 left-0 right-0 top-0  z-[1002]">
       <div
         className="absolute left-0 top-0 -z-10 h-full w-full bg-black/30"
         onClick={handleClose}
       ></div>
-      <div className="relative  h-screen w-[250px] ">
+      <div className="relative  h-screen w-[200px] ">
         <div className=" h-full  border-r border-border bg-background shadow-sm">
           <div className="flex flex-row items-center justify-between border-b border-border p-4 pb-6 shadow-sm">
             <Link to={"/"} className="">
