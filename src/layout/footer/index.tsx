@@ -106,11 +106,11 @@ const Footer = () => {
           social media
         </p>
         <ul className="mb-2 flex gap-2">
-          {/* <li>
-            <Link to={contactUsInfo?.content.faceBook ?? ""} target="_blank">
-              <FaFacebookSquare className="h-8 w-8" />
-            </Link>
-          </li> */}
+          <li>
+            {/* <Link to={contactUsInfo?.content.faceBook ?? ""} target="_blank"> */}
+            <FaFacebookSquare className="h-8 w-8" />
+            {/* </Link> */}
+          </li>
           <li>
             <Link to={contactUsInfo?.content.instagram ?? ""} target="_blank">
               <FaInstagramSquare className="h-8 w-8" />
