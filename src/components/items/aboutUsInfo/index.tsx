@@ -20,7 +20,11 @@ const AboutUsInfo = ({ aboutUsContent }: AboutUsContent) => {
           </div>
           <div className="md:max-w-md ">
             <p
-              style={{ direction: "rtl", textAlign: "justify" }}
+              style={{
+                direction: "rtl",
+                textAlign: "justify",
+                textAlignLast: "left", // Add this line
+              }}
               className="text-start text-muted-foreground  first-letter:pl-2"
             >
               {contactUs.text}

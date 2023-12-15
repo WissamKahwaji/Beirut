@@ -31,7 +31,7 @@ const Footer = () => {
       <div className="fixed bottom-20 right-10 z-[1001] h-12 w-12 rounded-md bg-background shadow-md transition-transform hover:scale-110 md:bottom-10 md:h-16 md:w-16">
         <Link
           to={
-            `https://web.whatsapp.com/send?phone=${contactUsInfo?.content.whatsApp}` ??
+            `https://api.whatsapp.com/send?phone=${contactUsInfo?.content.whatsApp}` ??
             ""
           }
           target="_blank"
@@ -106,11 +106,11 @@ const Footer = () => {
           social media
         </p>
         <ul className="mb-2 flex gap-2">
-          <li>
+          {/* <li>
             <Link to={contactUsInfo?.content.faceBook ?? ""} target="_blank">
               <FaFacebookSquare className="h-8 w-8" />
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to={contactUsInfo?.content.instagram ?? ""} target="_blank">
               <FaInstagramSquare className="h-8 w-8" />

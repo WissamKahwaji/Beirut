@@ -83,14 +83,14 @@ const ContactUs = () => {
               social media
             </p>
             <ul className="mb-2 flex gap-2">
-              <li>
+              {/* <li>
                 <Link
                   to={contactUsInfo?.content.faceBook ?? ""}
                   target="_blank"
                 >
                   <FaFacebookSquare className="h-8 w-8 transition-transform hover:scale-105 md:h-12 md:w-12" />
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to={contactUsInfo?.content.instagram ?? ""}
