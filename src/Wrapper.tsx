@@ -4,6 +4,8 @@ import { store } from "./app/store";
 import Routes from "./Routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Wrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -16,6 +18,7 @@ const Wrapper = () => {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
+        <ToastContainer />
         <Routes />
       </QueryClientProvider>
     </Provider>

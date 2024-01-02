@@ -34,3 +34,12 @@ export type ProductByType = {
 export type GetProductParams = {
   type: string | null;
 };
+export type IntentData = {
+  amount: number;
+};
+export type PaymentConfigRes = {
+  publicKey: string;
+};
+export type IntentRes = {
+  clientSecret: string;
+};

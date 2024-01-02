@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import {
+  getPaymentConfig,
   getProductDetails,
   getProductTypes,
   getProducts,
@@ -22,9 +23,16 @@ const useGetProductDetailsQuery = (id: string | undefined) =>
     queryFn: () => getProductDetails(id),
     enabled: !!id,
   });
+const useGetPaymentConfigQuery = () =>
+  useQuery({
+    queryKey: ["payment-config"],
+    queryFn: () => getPaymentConfig(),
+    staleTime: 0,
+  });
 export {
   useGetProductTypeQuery,
   useGetProductsQuery,
   useGetProductDetailsQuery,
   useGetProductsByTypeQuery,
+  useGetPaymentConfigQuery,
 };

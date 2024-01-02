@@ -2,14 +2,18 @@ import L from "leaflet";
 
 const NAV_LINKS = [
   { label: "about us", href: "/about-us" },
-  { label: "orders", href: "/orders" },
+  ...(localStorage.userId
+    ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
+    : []),
   { label: "contact us", href: "/contact-us" },
 ];
 const DRAWER_LINKS = [
   { label: "home", href: "/" },
   { label: "products", href: "/products" },
   { label: "about us", href: "/about-us" },
-  { label: "orders", href: "/orders" },
+  ...(localStorage.userId
+    ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
+    : []),
   { label: "contact us", href: "/contact-us" },
 ];
 const CAROUSAL_RESPONSIVE = {
@@ -64,13 +68,15 @@ const PRODUCT_TYPE_CAROUSAL_RESPONSIVE = {
     items: 2,
   },
 };
-const ORDERS_TABLE_HEADER = [
+const ORDERS_TABLE_HEADER = ["products", "weight", "total price"];
+const CART_TABLE_HEADER = [
   "products",
   "weight",
   "amounts",
   "total price",
   "delete",
 ];
+const UAE_EMIRATES = ["Abu Dhabi", "Dubai", "Sharjah"] as const;
 var MAP_INDICATOR_ICON = L.icon({
   iconUrl: "/logo.svg",
   iconSize: [38, 95],
@@ -85,5 +91,7 @@ export {
   CAROUSAL_RESPONSIVE,
   PRODUCT_TYPE_CAROUSAL_RESPONSIVE,
   ORDERS_TABLE_HEADER,
+  CART_TABLE_HEADER,
   MAP_INDICATOR_ICON,
+  UAE_EMIRATES,
 };

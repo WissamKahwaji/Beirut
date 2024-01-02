@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { MdOutlineAddShoppingCart, MdClose } from "react-icons/md";
 
 import {
@@ -25,7 +24,8 @@ const BasketMenu = () => {
       <DropdownMenuTrigger asChild>
         <div className="relative">
           <p className="absolute -right-1 -top-3  flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground  md:-right-2 md:-top-4 md:h-5 md:w-5">
-            {cart.cartValues.reduce((acc, pre) => acc + pre.count, 0)}
+            {cart.cartValues.length &&
+              cart.cartValues.reduce((acc, pre) => acc + pre.count, 0)}
           </p>
           <MdOutlineAddShoppingCart className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
         </div>
@@ -52,7 +52,7 @@ const BasketMenu = () => {
                   </p>
                   <p className="  text-muted-foreground ">
                     <span className="mr-1">
-                      {cartValue?.selectedWeightAndPrice.price}
+                      {cartValue?.selectedWeightAndPrice?.price}
                     </span>
                     <span className="uppercase">aed</span>
                   </p>
@@ -76,11 +76,13 @@ const BasketMenu = () => {
             <p className="text-lg font-semibold capitalize">total:</p>
             <p>
               <span className="mr-1">
-                {cart.cartValues.reduce(
-                  (acc, pre) =>
-                    acc + pre.count * Number(pre.selectedWeightAndPrice.price),
-                  0,
-                )}
+                {cart.cartValues.length &&
+                  cart.cartValues.reduce(
+                    (acc, pre) =>
+                      acc +
+                      pre.count * Number(pre.selectedWeightAndPrice.price),
+                    0,
+                  )}
               </span>
               <span className=" uppercase">aed</span>
             </p>
@@ -88,13 +90,13 @@ const BasketMenu = () => {
           <div className=" flex gap-4 px-1 py-2">
             <DropdownMenuItem
               className="border border-border px-2 py-1 uppercase"
-              onClick={() => navigate("/orders")}
+              onClick={() => navigate("/cart")}
             >
-              view orders
+              view cart
             </DropdownMenuItem>
             <DropdownMenuItem
               className="border border-border bg-primary  px-2 py-1 uppercase text-primary-foreground"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/payment-order-details")}
             >
               check out{" "}
             </DropdownMenuItem>

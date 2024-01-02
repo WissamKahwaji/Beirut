@@ -30,10 +30,7 @@ const Footer = () => {
     <div className="flex flex-col justify-between gap-8 border-t border-border  px-6 py-8 shadow-negative md:flex-row md:gap-16  md:px-12  md:py-16 ">
       <div className="fixed bottom-20 right-10 z-[1001] h-12 w-12 rounded-md bg-background shadow-md transition-transform hover:scale-110 md:bottom-10 md:h-16 md:w-16">
         <Link
-          to={
-            `https://api.whatsapp.com/send?phone=${contactUsInfo?.content.whatsApp}` ??
-            ""
-          }
+          to={`https://wa.me/${contactUsInfo?.content.whatsApp}` ?? ""}
           target="_blank"
         >
           <FaWhatsappSquare className="h-full w-full" />

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/app/hooks";
 import { addToCart } from "@/features/cart/slice";
 import classNames from "classnames";
+import { Weight } from "lucide-react";
 
 const ProductCart = (props: ProductCardProps) => {
   const { _id, img, title, desc, deepDetails, isCarouselItem } = props;
@@ -47,7 +48,16 @@ const ProductCart = (props: ProductCardProps) => {
         size={"sm"}
         onClick={() =>
           dispatch(
-            addToCart({ ...props, count: 1, wight: 1, localId: new Date() }),
+            addToCart({
+              ...props,
+              count: 1,
+              weight: 1,
+              selectedWeightAndPrice: {
+                price: deepDetails[0].price,
+                weight: deepDetails[0].weight,
+              },
+              localId: new Date(),
+            }),
           )
         }
       >

@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -6,23 +7,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import {
-  changeWight,
-  decrementProductNumber,
-  incrementProductNumber,
-  selectCartValues,
-} from "@/features/cart/slice";
-import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
-import RemoveProductFromCartDialog from "@/components/pages/orders/removeProductFromCartDialog";
-import ClearCartDialog from "@/components/pages/orders/clearCartDialog";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { ORDERS_TABLE_HEADER } from "@/constants";
+import { useGetUserOrdersQuery } from "@/api/orders/queries";
+import LoadingPage from "../loading";
 const Orders = () => {
-  const cartValues = useAppSelector(selectCartValues);
-  const dispatch = useAppDispatch();
-  console.log(cartValues);
+  const { id } = useParams<{ id: string | undefined }>();
+  const {
+    data: userOrders,
+    isLoading,
+    isFetching,
+    isError,
+  } = useGetUserOrdersQuery(id);
+  if (isFetching) return <LoadingPage />;
+  if (isError) return <></>;
+  console.log(userOrders);
   return (
     <div className="m-auto max-w-6xl py-12 md:py-24 ">
       <Table>
@@ -34,145 +32,48 @@ const Orders = () => {
           </TableRow>
         </TableHeader>
         <TableBody className="bg-gray-background">
-          {cartValues.cartValues.map((cartValue) => (
-            <TableRow key={cartValue._id}>
-              <TableCell>
-                <div className="flex gap-2">
-                  <div className="h-14 w-14 shrink-0">
-                    <img
-                      className="aspect-square h-full w-full object-cover"
-                      src={cartValue.img}
-                      alt={cartValue.title}
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm lg:text-lg">
-                      <span>{cartValue.title}</span>
-                      <span> * </span>
-                      <span>{cartValue.count}</span>
-                    </p>
-                    <p className=" text-muted-foreground ">
+          {userOrders?.map((order) =>
+            order.cartItems.map((item) => (
+              <>
+                <TableRow key={item._id}>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <div className="h-14 w-14 shrink-0">
+                        <img
+                          className="aspect-square h-full w-full object-cover"
+                          src={item.img}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm lg:text-lg">
+                          <span>{item.title}</span>
+                          <span> * </span>
+                          <span>{item.quantity}</span>
+                        </p>
+                        <p className=" text-muted-foreground ">
+                          <span className="mr-1">{item?.price}</span>
+                          <span className="uppercase">AED</span>
+                        </p>
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell>{item.weight} KG</TableCell>
+
+                  <TableCell>
+                    <p>
                       <span className="mr-1">
-                        {cartValue?.selectedWeightAndPrice.price}
+                        {Number(item.price) * item.quantity}
                       </span>
-                      <span className="uppercase">aed</span>
+                      <span className=" uppercase">AED</span>
                     </p>
-                  </div>
-                </div>
-              </TableCell>
-              <TableCell>
-                <div className="flex gap-1">
-                  {cartValue?.deepDetails.map((deepDetail, index) => (
-                    <Button
-                      variant={
-                        cartValue?.deepDetails.findIndex(
-                          (deepDetail) =>
-                            deepDetail.price ===
-                            cartValue.selectedWeightAndPrice?.price,
-                        ) === index
-                          ? "default"
-                          : "outline"
-                      }
-                      type="button"
-                      key={index}
-                      onClick={(e) => {
-                        dispatch(
-                          changeWight({
-                            id: cartValue.localId,
-                            selectedWeightAndPrice: deepDetail,
-                            oldWeightAndPrice: cartValue.selectedWeightAndPrice,
-                          }),
-                        );
-                      }}
-                    >
-                      {deepDetail.weight}Kg
-                    </Button>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center ">
-                  <button
-                    type="button"
-                    className="transition-transform hover:scale-90"
-                    onClick={() => {
-                      dispatch(
-                        incrementProductNumber({ id: cartValue.localId }),
-                      );
-                    }}
-                  >
-                    <CiSquarePlus className="h-10 w-10 md:h-12 md:w-12" />
-                  </button>
-                  <p
-                    //   type="number"
-                    //   value={cartValue.count}
-                    className="flex h-10 w-10 items-center justify-center border bg-background shadow-sm md:h-12  md:w-12"
-                    //   onChange={(e) =>
-                    //     dispatch(
-                    //       changeByAmount({
-                    //         id: cartValue._id,
-                    //         amount: Number(e.target.value),
-                    //       }),
-                    //     )
-                    //   }
-                  >
-                    {cartValue.count}{" "}
-                  </p>
-                  <button
-                    type="button"
-                    disabled={cartValue.count <= 1}
-                    className="transition-transform hover:scale-90 disabled:text-muted-foreground disabled:hover:scale-100"
-                    onClick={() =>
-                      dispatch(
-                        decrementProductNumber({ id: cartValue.localId }),
-                      )
-                    }
-                  >
-                    <CiSquareMinus className="h-10 w-10 md:h-12 md:w-12" />
-                  </button>
-                </div>
-              </TableCell>
-              <TableCell>
-                <p>
-                  <span className="mr-1">
-                    {Number(cartValue.selectedWeightAndPrice.price) *
-                      cartValue.count}
-                  </span>
-                  <span className=" uppercase">aed</span>
-                </p>
-              </TableCell>
-              <TableCell>
-                <RemoveProductFromCartDialog
-                  productTitle={cartValue.title}
-                  id={cartValue.localId}
-                />
-              </TableCell>
-            </TableRow>
-          ))}
+                  </TableCell>
+                </TableRow>
+              </>
+            )),
+          )}
         </TableBody>
       </Table>
-      <div className="ml-4 mt-5 flex flex-col justify-between gap-4 md:flex-row lg:ml-0">
-        <div className="flex gap-2">
-          <p className="font-semibold capitalize ">total: </p>
-          <p className="text-muted-foreground">
-            <span className="mr-1 ">
-              {cartValues.cartValues.reduce(
-                (acc, pre) =>
-                  acc + pre.count * Number(pre.selectedWeightAndPrice.price),
-                0,
-              )}
-            </span>
-            <span className="uppercase">aed</span>
-          </p>
-        </div>
-        <div className=" flex flex-wrap items-center gap-4 ">
-          <Button variant={"secondary"} asChild>
-            <Link to={"/products"}>continua shopping</Link>
-          </Button>
-          <Button>check out</Button>
-          <ClearCartDialog />
-        </div>
-      </div>
     </div>
   );
 };
