@@ -44,6 +44,7 @@ const PaymentOrdersDetails = () => {
           acc + Number(pre.selectedWeightAndPrice.price) * pre.count,
         0,
       ),
+      deliveryFee:25,
       paymentMethod: "cash",
       cartItems: cartValues.map((cart) => ({
         id: cart._id,
@@ -128,7 +129,7 @@ const PaymentOrdersDetails = () => {
               </FormItem>
             )}
           />
-          <FormField
+          {/* <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
@@ -154,14 +155,14 @@ const PaymentOrdersDetails = () => {
                 {form.watch("city") ? (
                   <FormDescription>
                     {`your delivery fee is ${
-                      form.watch("city") === "Abu Dhabi" ? 30 : 50
+                      form.watch("city") === "Abu Dhabi" ? 25 : 25
                     } AED`}
                   </FormDescription>
                 ) : null}
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <FormField
             control={form.control}
             name="userNote"
@@ -175,6 +176,9 @@ const PaymentOrdersDetails = () => {
               </FormItem>
             )}
           />
+           <FormDescription>
+                    {`your delivery fee is 25 AED`}
+                  </FormDescription>
           <FormField
             control={form.control}
             name="paymentMethod"

@@ -21,7 +21,7 @@ const useSubmitOrderDetailsMutation = () => {
     onSuccess(data, variables, context) {
       if (variables.paymentMethod === "card") {
         navigate("/checkout", {
-          state: { deliveryFee: variables.deliveryFee },
+          state: { deliveryFee: 25 },
         });
       } else {
         dispatch(clearCart({}));
