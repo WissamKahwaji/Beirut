@@ -84,7 +84,7 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>user name</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter your user name" {...field} />
+                  <Input placeholder="enter your user name" {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,7 +97,7 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>mobile number</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter your mobile number" {...field} />
+                  <Input placeholder="enter your mobile number" {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -110,7 +110,7 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>your street</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter  your street" {...field} />
+                  <Input placeholder="enter  your street" {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,7 +123,7 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>your building</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter  your building" {...field} />
+                  <Input placeholder="enter  your building" {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
