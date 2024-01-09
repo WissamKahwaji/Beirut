@@ -82,9 +82,9 @@ const PaymentOrdersDetails = () => {
             name="userName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>user name</FormLabel>
+                <FormLabel>full name</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter your user name" {...field} required />
+                  <Input placeholder="enter your full name" {...field} required />
                 </FormControl>
                 <FormMessage />
               </FormItem>
