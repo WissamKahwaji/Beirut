@@ -76,7 +76,16 @@ const CART_TABLE_HEADER = [
   "total price",
   "delete",
 ];
-const UAE_EMIRATES = ["Abu Dhabi", "Dubai", "Sharjah"] as const;
+const UAE_EMIRATES = [
+  "Abu Dhabi",
+  "Dubai",
+  "Sharjah",
+  "Ajman",
+  "Umm Al Quwain",
+  "Ras Al Khaimah",
+  "Fujairah",
+] as const;
+const COUNTRIES = ["United Arab Emirates"] as const;
 var MAP_INDICATOR_ICON = L.icon({
   iconUrl: "/logo.svg",
   iconSize: [38, 95],
@@ -94,4 +103,5 @@ export {
   CART_TABLE_HEADER,
   MAP_INDICATOR_ICON,
   UAE_EMIRATES,
+  COUNTRIES,
 };

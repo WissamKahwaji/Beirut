@@ -41,6 +41,7 @@ const ProductCart = (props: ProductCardProps) => {
           <p className=" text-sm text-muted-foreground md:text-lg lg:text-xl">
             <span className="mr-1">{deepDetails?.[0]?.price}</span>
             <span className="uppercase">aed</span>
+            <span className="text-sm"> (Including VAT)</span>
           </p>
         </div>
       </Link>

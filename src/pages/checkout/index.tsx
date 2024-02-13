@@ -14,7 +14,7 @@ import LoadingPage from "../loading";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { toast } from "react-toastify";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>("");
@@ -23,6 +23,7 @@ const CheckoutForm = () => {
   const dispatch = useAppDispatch();
   const { state } = useLocation();
   const { cartValues } = useAppSelector(selectCartValues);
+  const navigate = useNavigate();
 
   const handlePaymentSubmit = async (event: any) => {
     event.preventDefault();
@@ -54,7 +55,7 @@ const CheckoutForm = () => {
         elements,
         clientSecret,
         confirmParams: {
-          return_url: `${window.location.origin}`,
+          return_url: `${window.location.origin}/order-summery/${localStorage.userId}`,
         },
       });
 

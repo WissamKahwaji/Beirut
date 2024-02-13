@@ -166,7 +166,7 @@ const Cart = () => {
         </div>
         <div className=" flex flex-wrap items-center gap-4 ">
           <Button variant={"secondary"} asChild>
-            <Link to={"/products"}>continua shopping</Link>
+            <Link to={"/products"}>continue shopping</Link>
           </Button>
           <Button asChild>
             <Link to={"/payment-order-details"}>check out</Link>

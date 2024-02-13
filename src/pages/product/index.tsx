@@ -93,13 +93,16 @@ const Product = () => {
               <p className=" font-semibold capitalize   md:text-xl">price : </p>
               <p className="  text-muted-foreground sm:text-lg md:text-xl">
                 <span className="mr-1">
-                  {watch("selectedWeightAndPrice")?.price}
+                  {parseFloat(watch("selectedWeightAndPrice")?.price).toFixed(
+                    2,
+                  )}
                 </span>
                 <span className="uppercase">aed</span>
+                <span className="text-sm"> (Including VAT)</span>
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <p className=" font-semibold capitalize   md:text-xl">wight : </p>
+              <p className=" font-semibold capitalize md:text-xl">weight : </p>
               <p className="flex items-center   text-muted-foreground sm:text-lg md:text-xl">
                 {watch("selectedWeightAndPrice")?.weight}
                 <span className="uppercase">kg</span>

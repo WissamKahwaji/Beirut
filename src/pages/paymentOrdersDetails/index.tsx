@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -24,13 +24,14 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import { selectCartValues } from "@/features/cart/slice";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { UAE_EMIRATES } from "@/constants";
+import { COUNTRIES, UAE_EMIRATES } from "@/constants";
 import { useSubmitOrderDetailsMutation } from "@/api/orders/queries";
+import Modal from "./Modal";
 
 const PaymentOrdersDetails = () => {
   const { cartValues } = useSelector(selectCartValues);
   const { mutate: submitOrderDetails } = useSubmitOrderDetailsMutation();
-
+  const [open, setOpen] = useState<boolean>(false);
   const form = useForm<PaymentOrdersValue>({
     defaultValues: {
       userId: "",
@@ -38,13 +39,15 @@ const PaymentOrdersDetails = () => {
       userStreet: "",
       userBuilding: "",
       userMobileNumber: "",
+      city: "Dubai",
+      country: "United Arab Emirates",
       userNote: "",
       cartItemsTotalPrice: cartValues.reduce(
         (acc, pre) =>
           acc + Number(pre.selectedWeightAndPrice.price) * pre.count,
         0,
       ),
-      deliveryFee:25,
+      deliveryFee: 25,
       paymentMethod: "cash",
       cartItems: cartValues.map((cart) => ({
         id: cart._id,
@@ -84,7 +87,11 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>full name</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter your full name" {...field} required />
+                  <Input
+                    placeholder="enter your full name"
+                    {...field}
+                    required
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,7 +104,11 @@ const PaymentOrdersDetails = () => {
               <FormItem>
                 <FormLabel>mobile number</FormLabel>
                 <FormControl>
-                  <Input placeholder="enter your mobile number" {...field} required />
+                  <Input
+                    placeholder="enter your mobile number"
+                    {...field}
+                    required
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,31 +116,32 @@ const PaymentOrdersDetails = () => {
           />
           <FormField
             control={form.control}
-            name="userStreet"
+            name="country"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>your street</FormLabel>
-                <FormControl>
-                  <Input placeholder="enter  your street" {...field} required />
-                </FormControl>
+                <FormLabel>country</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your country" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {COUNTRIES.map((country) => (
+                      <SelectItem key={country} value={country}>
+                        {country}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
-            control={form.control}
-            name="userBuilding"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>your building</FormLabel>
-                <FormControl>
-                  <Input placeholder="enter  your building" {...field} required />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* <FormField
             control={form.control}
             name="city"
             render={({ field }) => (
@@ -162,7 +174,38 @@ const PaymentOrdersDetails = () => {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
+          <FormField
+            control={form.control}
+            name="userStreet"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>your street</FormLabel>
+                <FormControl>
+                  <Input placeholder="enter  your street" {...field} required />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="userBuilding"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>your building</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="enter  your building"
+                    {...field}
+                    required
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="userNote"
@@ -176,9 +219,7 @@ const PaymentOrdersDetails = () => {
               </FormItem>
             )}
           />
-           <FormDescription>
-                    {`your delivery fee is 25 AED`}
-                  </FormDescription>
+          <FormDescription>{`your delivery fee is 25 AED`}</FormDescription>
           <FormField
             control={form.control}
             name="paymentMethod"
@@ -213,9 +254,110 @@ const PaymentOrdersDetails = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          {/* <Button onClick={() => setOpen(true)}>Submit</Button> */}
+          <button
+            className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            onClick={() => setOpen(true)}
+            type="button"
+          >
+            Submit
+          </button>
+          <Modal open={open} onClose={() => setOpen(false)}>
+            <div className="flex w-full flex-col items-start justify-start">
+              <h1 className="py-3 text-center text-2xl text-black">
+                Your Order Summery
+              </h1>
+              <p className="font-semibold">Product in cart</p>
+              <div className="">
+                {cartValues.map((cartValue, index) => (
+                  <div className="my-1 flex gap-2">
+                    <div className="h-14 w-14">
+                      <img
+                        className="aspect-square h-full w-full object-cover"
+                        src={cartValue.img}
+                        alt={cartValue.title}
+                      />
+                    </div>
+                    <div>
+                      <p>
+                        <span>{cartValue.title}</span>
+                        <span> * </span>
+                        <span>{cartValue.count}</span>
+                      </p>
+                      <p className="  text-muted-foreground ">
+                        <span className="mr-1">
+                          {parseFloat(
+                            cartValue?.selectedWeightAndPrice?.price,
+                          ).toFixed(2)}
+                        </span>
+                        <span className="uppercase">aed</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <hr className=" border-1 border-t-1   mt-8 w-full border-black" />
+              <div className="my-3">
+                <p className="font-semibold">Your delivery details :</p>
+                <div className="flex flex-col ">
+                  <div className="my-1 flex gap-4">
+                    <p>full name : </p>
+                    <p>{form.getValues("userName")}</p>
+                  </div>
+                  <div className="my-1 flex gap-4">
+                    <p>mobile number : </p>
+                    <p>{form.getValues("userMobileNumber")}</p>
+                  </div>
+                  <div className="my-1 flex gap-4">
+                    <p>country : </p>
+                    <p>{form.getValues("country")}</p>
+                  </div>
+                  <div className="my-1 flex gap-4">
+                    <p>emirate : </p>
+                    <p>{form.getValues("city")}</p>
+                  </div>
+                  <div className="my-1 flex gap-4">
+                    <p>your street : </p>
+                    <p>{form.getValues("userStreet")}</p>
+                  </div>
+                  <div className="my-1 flex gap-4">
+                    <p>your building : </p>
+                    <p>{form.getValues("userBuilding")}</p>
+                  </div>
+                </div>
+
+                <div className="my-1 flex gap-4">
+                  <p>Payment Method : </p>
+                  <p>{form.getValues("paymentMethod")}</p>
+                </div>
+                <div className="my-1 flex gap-4">
+                  <p>Delivery Fee : </p>
+                  <p>{25}</p>
+                </div>
+              </div>
+
+              <hr className=" border-1 border-t-1  w-full border-black" />
+              <div>
+                <div className="flex items-center justify-between px-1 py-2">
+                  <p className="text-lg font-semibold capitalize">
+                    total amount:
+                  </p>
+                  <p>
+                    <span className="mx-1">
+                      {form.getValues("cartItemsTotalPrice") + 25}
+                    </span>
+                    <span className=" uppercase">aed</span>
+                  </p>
+                </div>
+              </div>
+              <Button type="submit" className="w-full">
+                Submit
+              </Button>
+            </div>
+          </Modal>
         </form>
       </Form>
+      {/* <button onClick={() => setOpen(true)}>Show Your Order details</button> */}
     </div>
   );
 };

@@ -9,8 +9,16 @@ const getUserOrders = async (id: string) => {
   );
   return res.data;
 };
+
+const getLastUserOrder = async (id: string) => {
+  const res = await publicInstance.get<UserOrder>(
+    API_ROUTES.ORDERS.LAST_USER_ORDER(id),
+  );
+  return res.data;
+};
+
 const submitOrderDetails = async (data: PaymentOrdersValue) => {
   const res = await publicInstance.post(API_ROUTES.ORDERS.SUBMIT_DETAILS, data);
   return res.data;
 };
-export { getUserOrders, submitOrderDetails };
+export { getUserOrders, getLastUserOrder, submitOrderDetails };

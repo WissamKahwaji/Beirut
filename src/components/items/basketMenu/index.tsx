@@ -52,7 +52,9 @@ const BasketMenu = () => {
                   </p>
                   <p className="  text-muted-foreground ">
                     <span className="mr-1">
-                      {cartValue?.selectedWeightAndPrice?.price}
+                      {parseFloat(
+                        cartValue?.selectedWeightAndPrice?.price,
+                      ).toFixed(2)}
                     </span>
                     <span className="uppercase">aed</span>
                   </p>
@@ -77,12 +79,14 @@ const BasketMenu = () => {
             <p>
               <span className="mr-1">
                 {cart.cartValues.length &&
-                  cart.cartValues.reduce(
-                    (acc, pre) =>
-                      acc +
-                      pre.count * Number(pre.selectedWeightAndPrice.price),
-                    0,
-                  )}
+                  cart.cartValues
+                    .reduce(
+                      (acc, pre) =>
+                        acc +
+                        pre.count * Number(pre.selectedWeightAndPrice.price),
+                      0,
+                    )
+                    .toFixed(2)}
               </span>
               <span className=" uppercase">aed</span>
             </p>

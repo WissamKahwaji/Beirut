@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getUserOrders, submitOrderDetails } from ".";
+import { getLastUserOrder, getUserOrders, submitOrderDetails } from ".";
 import { PaymentOrdersValue } from "@/pages/paymentOrdersDetails/type";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -12,6 +12,14 @@ const useGetUserOrdersQuery = (id: string | undefined) =>
     queryFn: () => getUserOrders(id!),
     enabled: !!id,
   });
+
+const useGetLastUserOrderQuery = (id: string | undefined) =>
+  useQuery({
+    queryKey: ["get-last-user-order", id],
+    queryFn: () => getLastUserOrder(id!),
+    enabled: !!id,
+  });
+
 const useSubmitOrderDetailsMutation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -26,7 +34,7 @@ const useSubmitOrderDetailsMutation = () => {
       } else {
         dispatch(clearCart({}));
         toast.success("your order has submitted successfully");
-        navigate("/");
+        navigate(`/order-summery/${localStorage.userId}`);
       }
     },
     onError(error, variables, context) {
@@ -34,4 +42,8 @@ const useSubmitOrderDetailsMutation = () => {
     },
   });
 };
-export { useGetUserOrdersQuery, useSubmitOrderDetailsMutation };
+export {
+  useGetUserOrdersQuery,
+  useGetLastUserOrderQuery,
+  useSubmitOrderDetailsMutation,
+};

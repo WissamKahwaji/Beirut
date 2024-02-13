@@ -16,6 +16,7 @@ const Orders = lazy(() => import("@/pages/orders"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/checkout"));
 const PaymentOrdersDetails = lazy(() => import("@/pages/paymentOrdersDetails"));
+const OrderSummery = lazy(() => import("@/pages/orderSummery/OrderSummery"));
 const Routes = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,6 +29,7 @@ const Routes = () => {
         <Route path="orders/user/:id" element={<Orders />} />
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="order-summery/:id" element={<OrderSummery />} />
         <Route
           path="payment-order-details"
           element={<PaymentOrdersDetails />}

@@ -21,6 +21,7 @@ const ABOUT_US = {
 const ORDERS = {
   SUBMIT_DETAILS: "/orders/submit",
   USER_ORDERS: (id: string) => `/orders/user-orders/${id}`,
+  LAST_USER_ORDER: (id: string) => `/orders/last-user-order/${id}`,
 };
 const API_ROUTES = {
   PRODUCTS,

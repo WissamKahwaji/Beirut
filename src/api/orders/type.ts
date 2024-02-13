@@ -3,6 +3,7 @@ import { Product } from "../products/type";
 export type UserOrder = {
   cartItems: CartItem[];
   cartItemsTotalPrice: number;
+  country: string;
   city: string;
   createdAt: string;
   paymentMethod: "cash" | "card";
@@ -13,6 +14,7 @@ export type UserOrder = {
   userName: string;
   userNote: string;
   userStreet: string;
+  deliveryFee: number;
   __v: string;
   _id: string;
 };

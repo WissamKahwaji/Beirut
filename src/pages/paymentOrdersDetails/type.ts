@@ -7,6 +7,7 @@ export type PaymentOrdersValue = {
   userNote: string;
   orderStatus?: string;
   city: string;
+  country: string;
   deliveryFee: number;
   cartItemsTotalPrice: number;
   paymentMethod: string;
