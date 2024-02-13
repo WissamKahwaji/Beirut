@@ -80,12 +80,16 @@ const PaymentOrdersDetails = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-5 lg:space-y-8"
         >
+          <p className="text-center text-sm font-semibold">
+            On our online store, we process order within the United Arab
+            Emirates only. For worldwide orders, please contact us on WhatsApp.
+          </p>
           <FormField
             control={form.control}
             name="userName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>full name</FormLabel>
+                <FormLabel className="capitalize">full name</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="enter your full name"
@@ -102,7 +106,7 @@ const PaymentOrdersDetails = () => {
             name="userMobileNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>mobile number</FormLabel>
+                <FormLabel className="capitalize">mobile number</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="enter your mobile number"
@@ -119,7 +123,7 @@ const PaymentOrdersDetails = () => {
             name="country"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>country</FormLabel>
+                <FormLabel className="capitalize">country</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -146,7 +150,7 @@ const PaymentOrdersDetails = () => {
             name="city"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>emirate</FormLabel>
+                <FormLabel className="capitalize">emirate</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -180,7 +184,7 @@ const PaymentOrdersDetails = () => {
             name="userStreet"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>your street</FormLabel>
+                <FormLabel className="capitalize">your street</FormLabel>
                 <FormControl>
                   <Input placeholder="enter  your street" {...field} required />
                 </FormControl>
@@ -193,7 +197,7 @@ const PaymentOrdersDetails = () => {
             name="userBuilding"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>your building</FormLabel>
+                <FormLabel className="capitalize">your building</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="enter  your building"
@@ -211,7 +215,7 @@ const PaymentOrdersDetails = () => {
             name="userNote"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>your note</FormLabel>
+                <FormLabel className="capitalize">your note</FormLabel>
                 <FormControl>
                   <TextArea placeholder="enter  your note" {...field} />
                 </FormControl>
@@ -225,7 +229,7 @@ const PaymentOrdersDetails = () => {
             name="paymentMethod"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>payment method</FormLabel>
+                <FormLabel className="capitalize">payment method</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -236,7 +240,7 @@ const PaymentOrdersDetails = () => {
                       <FormControl>
                         <RadioGroupItem value="cash" />
                       </FormControl>
-                      <FormLabel className="font-normal">
+                      <FormLabel className="font-normal capitalize">
                         cash payment{" "}
                       </FormLabel>
                     </FormItem>
@@ -244,7 +248,7 @@ const PaymentOrdersDetails = () => {
                       <FormControl>
                         <RadioGroupItem value="card" />
                       </FormControl>
-                      <FormLabel className="font-normal">
+                      <FormLabel className="font-normal capitalize">
                         card payment{" "}
                       </FormLabel>
                     </FormItem>

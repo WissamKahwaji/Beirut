@@ -26,39 +26,39 @@ const OrderSummery = () => {
       </h1>
       <div className="mt-10 grid grid-flow-row grid-cols-1 gap-y-7 sm:grid-cols-2 lg:grid-cols-3">
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">Invoice Number : </p>
+          <p className="font-semibold capitalize">Invoice Number : </p>
           <p>{lastOrder?._id}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">full name : </p>
+          <p className="font-semibold capitalize">full name : </p>
           <p>{lastOrder?.userName}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">mobile number : </p>
+          <p className="font-semibold capitalize">mobile number : </p>
           <p>{lastOrder?.userMobileNumber}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">country : </p>
+          <p className="font-semibold capitalize">country : </p>
           <p>{lastOrder?.country}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">city : </p>
+          <p className="font-semibold capitalize">city : </p>
           <p>{lastOrder?.city}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">your street : </p>
+          <p className="font-semibold capitalize">your street : </p>
           <p>{lastOrder?.userStreet}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">your building : </p>
+          <p className="font-semibold capitalize">your building : </p>
           <p>{lastOrder?.userBuilding}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">Payment Method : </p>
+          <p className="font-semibold capitalize">Payment Method : </p>
           <p>{lastOrder?.paymentMethod}</p>
         </div>
         <div className="my-1 flex gap-4">
-          <p className="font-semibold">Delivery Fee : </p>
+          <p className="font-semibold capitalize">Delivery Fee : </p>
           <p>{lastOrder?.deliveryFee}</p>
         </div>
       </div>
