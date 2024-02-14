@@ -27,7 +27,7 @@ const Product = () => {
   } = useForm<AddToCartValues>({
     resolver: zodResolver(addToCartValidationSchema),
     defaultValues: {
-      count: 0,
+      count: 1,
       // cartValues.cartValues.find((productInCart) => productInCart._id === id)
       //   ?.count ?? 0,
       selectedWeightAndPrice: {},
@@ -37,7 +37,11 @@ const Product = () => {
   });
   useEffect(() => {
     productDetails &&
-      setValue("selectedWeightAndPrice", productDetails?.deepDetails[0]);
+      setValue("selectedWeightAndPrice", {
+        price: productDetails.priceKg.toString(),
+        weight: "1",
+        unit: "kg",
+      });
   }, [productDetails, setValue]);
 
   // useEffect(() => {
@@ -61,6 +65,7 @@ const Product = () => {
         count: values.count,
         selectedWeightAndPrice: values.selectedWeightAndPrice,
         localId: new Date(),
+        unit: values.selectedWeightAndPrice.unit,
       }),
     );
   };
@@ -93,9 +98,10 @@ const Product = () => {
               <p className=" font-semibold capitalize   md:text-xl">price : </p>
               <p className="  text-muted-foreground sm:text-lg md:text-xl">
                 <span className="mr-1">
-                  {parseFloat(watch("selectedWeightAndPrice")?.price).toFixed(
-                    2,
-                  )}
+                  {/* {parseFloat(
+                    productDetails?.priceKg.toString() ?? "0",
+                  ).toFixed(2)} */}
+                  {parseFloat(watch("selectedWeightAndPrice").price).toFixed(2)}
                 </span>
                 <span className="uppercase">aed</span>
                 <span className="text-sm"> (Including VAT)</span>
@@ -105,7 +111,10 @@ const Product = () => {
               <p className=" font-semibold capitalize md:text-xl">weight : </p>
               <p className="flex items-center   text-muted-foreground sm:text-lg md:text-xl">
                 {watch("selectedWeightAndPrice")?.weight}
-                <span className="uppercase">kg</span>
+                <span className="uppercase">
+                  {" "}
+                  {watch("selectedWeightAndPrice")?.unit}
+                </span>
               </p>
             </div>
           </div>
@@ -117,7 +126,7 @@ const Product = () => {
             className="flex flex-col  gap-8"
           >
             {/* <div> */}
-            <div className="flex gap-1">
+            {/* <div className="flex gap-1">
               {productDetails?.deepDetails.map((deepDetail, index) => (
                 <Button
                   variant={
@@ -138,6 +147,63 @@ const Product = () => {
                   {deepDetail.weight}Kg
                 </Button>
               ))}
+            </div> */}
+            <div className="flex gap-6">
+              <input
+                type="number"
+                className="  border bg-background px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
+                placeholder="Enter weight"
+                value={watch("selectedWeightAndPrice").weight}
+                onChange={(e) => {
+                  setValue(
+                    "selectedWeightAndPrice.weight",
+                    Number(e.target.value).toString(),
+                  );
+                  watch("selectedWeightAndPrice")?.unit === "kg"
+                    ? setValue(
+                        "selectedWeightAndPrice.price",
+                        (
+                          Number(e.target.value) * productDetails?.priceKg!
+                        ).toString(),
+                      )
+                    : setValue(
+                        "selectedWeightAndPrice.price",
+                        (
+                          (Number(e.target.value) / 1000) *
+                          productDetails?.priceKg!
+                        ).toString(),
+                      );
+                }}
+              />
+              <select
+                className="rounded-md border bg-background px-3 py-2 capitalize focus:outline-none focus:ring-1 focus:ring-primary"
+                // {...register("unit")}
+                onChange={(e) => {
+                  setValue(
+                    "selectedWeightAndPrice.unit",
+                    e.target.value.toString(),
+                  );
+                  e.target.value.toString() === "kg"
+                    ? setValue(
+                        "selectedWeightAndPrice.price",
+                        (
+                          Number(watch("selectedWeightAndPrice")?.weight) *
+                          productDetails?.priceKg!
+                        ).toString(),
+                      )
+                    : setValue(
+                        "selectedWeightAndPrice.price",
+                        (
+                          (Number(watch("selectedWeightAndPrice")?.weight) /
+                            1000) *
+                          productDetails?.priceKg!
+                        ).toString(),
+                      );
+                }}
+              >
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+              </select>
             </div>
             <div className="flex items-center gap-4">
               <input

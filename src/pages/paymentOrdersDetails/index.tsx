@@ -53,7 +53,7 @@ const PaymentOrdersDetails = () => {
         id: cart._id,
         img: cart.img,
         title: cart.title,
-        weight: cart.selectedWeightAndPrice.weight,
+        weight: cart.selectedWeightAndPrice.weight + cart.unit,
         price: cart.selectedWeightAndPrice.price,
         quantity: cart.count,
       })),
@@ -288,14 +288,25 @@ const PaymentOrdersDetails = () => {
                         <span> * </span>
                         <span>{cartValue.count}</span>
                       </p>
-                      <p className="  text-muted-foreground ">
-                        <span className="mr-1">
-                          {parseFloat(
-                            cartValue?.selectedWeightAndPrice?.price,
-                          ).toFixed(2)}
-                        </span>
-                        <span className="uppercase">aed</span>
-                      </p>
+                      <div className="flex gap-1">
+                        <p className="  text-muted-foreground ">
+                          <span className="mr-1">
+                            {parseFloat(
+                              cartValue?.selectedWeightAndPrice?.price,
+                            ).toFixed(2)}
+                          </span>
+                          <span className="uppercase">aed</span>
+                        </p>
+                        <p className="  text-muted-foreground ">
+                          <span className="">for</span>
+                        </p>
+                        <p className="  text-muted-foreground ">
+                          <span className="mr-1">
+                            {cartValue.selectedWeightAndPrice.weight}
+                          </span>
+                          <span className="uppercase">{cartValue.unit}</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}

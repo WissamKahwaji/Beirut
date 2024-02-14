@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { Weight } from "lucide-react";
 
 const ProductCart = (props: ProductCardProps) => {
-  const { _id, img, title, desc, deepDetails, isCarouselItem } = props;
+  const { _id, img, title, desc, deepDetails, isCarouselItem, priceKg } = props;
   const dispatch = useAppDispatch();
   return (
     <div
@@ -39,7 +39,7 @@ const ProductCart = (props: ProductCardProps) => {
           </p>
 
           <p className=" text-sm text-muted-foreground md:text-lg lg:text-xl">
-            <span className="mr-1">{deepDetails?.[0]?.price}</span>
+            <span className="mr-1">{priceKg}</span>
             <span className="uppercase">aed</span>
             <span className="text-sm"> (Including VAT)</span>
           </p>
@@ -54,10 +54,11 @@ const ProductCart = (props: ProductCardProps) => {
               count: 1,
               weight: 1,
               selectedWeightAndPrice: {
-                price: deepDetails[0].price,
-                weight: deepDetails[0].weight,
+                price: priceKg,
+                weight: 1,
               },
               localId: new Date(),
+              unit: "kg",
             }),
           )
         }

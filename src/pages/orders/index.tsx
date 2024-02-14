@@ -52,18 +52,18 @@ const Orders = () => {
                           <span>{item.quantity}</span>
                         </p>
                         <p className=" text-muted-foreground ">
-                          <span className="mr-1">{item?.price}</span>
+                          <span className="mr-1">{item?.price.toFixed(2)}</span>
                           <span className="uppercase">AED</span>
                         </p>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell>{item.weight} KG</TableCell>
+                  <TableCell>{item.weight} </TableCell>
 
                   <TableCell>
                     <p>
                       <span className="mr-1">
-                        {Number(item.price) * item.quantity}
+                        {(Number(item.price) * item.quantity).toFixed(2)}
                       </span>
                       <span className=" uppercase">AED</span>
                     </p>

@@ -12,6 +12,7 @@ export type Product = {
   title: string;
   desc: string;
   type: ProductType;
+  priceKg: number;
   __v?: number;
 };
 

@@ -84,10 +84,18 @@ const OrderSummery = () => {
                 <span> * </span>
                 <span>{item.quantity}</span>
               </p>
-              <p className="  text-muted-foreground ">
-                <span className="mr-1">{item.price.toFixed(2)}</span>
-                <span className="uppercase">aed</span>
-              </p>
+              <div className="flex gap-1">
+                <p className="  text-muted-foreground ">
+                  <span className="mr-1">{item.price.toFixed(2)}</span>
+                  <span className="uppercase">aed</span>
+                </p>
+                <p className="  text-muted-foreground ">
+                  <span className="">for</span>
+                </p>
+                <p className="  text-muted-foreground ">
+                  <span className="mr-1">{item.weight}</span>
+                </p>
+              </div>
             </div>
           </div>
         ))}

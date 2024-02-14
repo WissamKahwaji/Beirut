@@ -52,7 +52,9 @@ const Cart = () => {
                     </p>
                     <p className=" text-muted-foreground ">
                       <span className="mr-1">
-                        {cartValue?.selectedWeightAndPrice?.price}
+                        {parseFloat(
+                          cartValue?.selectedWeightAndPrice?.price,
+                        ).toFixed(2)}
                       </span>
                       <span className="uppercase">aed</span>
                     </p>
@@ -61,32 +63,7 @@ const Cart = () => {
               </TableCell>
               <TableCell>
                 <div className="flex gap-1">
-                  {cartValue?.deepDetails.map((deepDetail, index) => (
-                    <Button
-                      variant={
-                        cartValue?.deepDetails.findIndex(
-                          (deepDetail) =>
-                            deepDetail.price ===
-                            cartValue.selectedWeightAndPrice?.price,
-                        ) === index
-                          ? "default"
-                          : "outline"
-                      }
-                      type="button"
-                      key={index}
-                      onClick={(e) => {
-                        dispatch(
-                          changeWight({
-                            id: cartValue.localId,
-                            selectedWeightAndPrice: deepDetail,
-                            oldWeightAndPrice: cartValue.selectedWeightAndPrice,
-                          }),
-                        );
-                      }}
-                    >
-                      {deepDetail.weight}Kg
-                    </Button>
-                  ))}
+                  {cartValue.selectedWeightAndPrice.weight + cartValue.unit}
                 </div>
               </TableCell>
               <TableCell>
@@ -134,8 +111,10 @@ const Cart = () => {
               <TableCell>
                 <p>
                   <span className="mr-1">
-                    {Number(cartValue.selectedWeightAndPrice.price) *
-                      cartValue.count}
+                    {(
+                      Number(cartValue.selectedWeightAndPrice.price) *
+                      cartValue.count
+                    ).toFixed(2)}
                   </span>
                   <span className=" uppercase">aed</span>
                 </p>
@@ -155,11 +134,13 @@ const Cart = () => {
           <p className="font-semibold capitalize ">total: </p>
           <p className="text-muted-foreground">
             <span className="mr-1 ">
-              {cartValues.cartValues.reduce(
-                (acc, pre) =>
-                  acc + pre.count * Number(pre.selectedWeightAndPrice.price),
-                0,
-              )}
+              {cartValues.cartValues
+                .reduce(
+                  (acc, pre) =>
+                    acc + pre.count * Number(pre.selectedWeightAndPrice.price),
+                  0,
+                )
+                .toFixed(2)}
             </span>
             <span className="uppercase">aed</span>
           </p>
