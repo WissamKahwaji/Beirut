@@ -11,6 +11,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const Products = lazy(() => import("@/pages/products"));
 const Product = lazy(() => import("@/pages/product"));
 const AboutUs = lazy(() => import("@/pages/aboutUs"));
+const ShippingPolicy = lazy(() => import("@/pages/shipping-policy"));
 const ContactUs = lazy(() => import("@/pages/contactUs"));
 const Orders = lazy(() => import("@/pages/orders"));
 const Cart = lazy(() => import("@/pages/Cart"));
@@ -34,6 +35,7 @@ const Routes = () => {
           path="payment-order-details"
           element={<PaymentOrdersDetails />}
         />
+        <Route path="shipping-policy" element={<ShippingPolicy />} />
       </Route>,
     ),
   );

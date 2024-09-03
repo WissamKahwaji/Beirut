@@ -60,9 +60,7 @@ const Navbar = () => {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>
-                      <p className="text-lg font-semibold capitalize">
-                        products
-                      </p>
+                      <p className="text-lg font-semibold capitalize">Shop</p>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="mx-6 my-6 min-w-[100px] capitalize  [&>li]:mt-2">

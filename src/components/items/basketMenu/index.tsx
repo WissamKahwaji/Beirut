@@ -30,12 +30,15 @@ const BasketMenu = () => {
           <MdOutlineAddShoppingCart className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="max-h-[75vh] overflow-y-auto">
         <DropdownMenuLabel>product in cart</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {cart.cartValues.map((cartValue) => (
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              key={cartValue.localId}
+              onSelect={(event) => event.preventDefault()}
+            >
               <div className="flex gap-2">
                 <div className="h-14 w-14">
                   <img
@@ -96,7 +99,7 @@ const BasketMenu = () => {
               className="border border-border px-2 py-1 uppercase"
               onClick={() => navigate("/cart")}
             >
-              view cart
+              review order
             </DropdownMenuItem>
             <DropdownMenuItem
               className="border border-border bg-primary  px-2 py-1 uppercase text-primary-foreground"

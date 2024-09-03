@@ -8,6 +8,7 @@ const addToCartValidationSchema = z.object({
     weight: z.string(),
     unit: z.string(),
   }),
+  note: z.any(),
 });
 export default addToCartValidationSchema;
 export type AddToCartValues = z.infer<typeof addToCartValidationSchema>;

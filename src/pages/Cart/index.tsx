@@ -23,7 +23,10 @@ const Cart = () => {
   const cartValues = useAppSelector(selectCartValues);
   const dispatch = useAppDispatch();
   return (
-    <div className="m-auto max-w-6xl py-12 md:py-24 ">
+    <div className="m-auto max-w-6xl  py-6 md:py-8 ">
+      <p className=" pb-6 text-center text-2xl font-bold  capitalize text-black md:pb-8">
+        Order Review
+      </p>
       <Table>
         <TableHeader>
           <TableRow>
@@ -67,6 +70,9 @@ const Cart = () => {
                 </div>
               </TableCell>
               <TableCell>
+                <div className="flex gap-1">{cartValue.note ?? "-------"}</div>
+              </TableCell>
+              {/* <TableCell>
                 <div className="flex items-center ">
                   <button
                     type="button"
@@ -107,7 +113,7 @@ const Cart = () => {
                     <CiSquareMinus className="h-10 w-10 md:h-12 md:w-12" />
                   </button>
                 </div>
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 <p>
                   <span className="mr-1">

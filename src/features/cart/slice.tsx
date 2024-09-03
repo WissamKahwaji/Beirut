@@ -7,6 +7,7 @@ interface CartValue extends Product {
   selectedWeightAndPrice: DeepDetails;
   localId: string;
   unit: string;
+  note?: string;
 }
 interface InitialState {
   cartValues: CartValue[];

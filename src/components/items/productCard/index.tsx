@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ProductCardProps } from "./type";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/app/hooks";
 import { addToCart } from "@/features/cart/slice";
@@ -11,6 +11,7 @@ import { Weight } from "lucide-react";
 const ProductCart = (props: ProductCardProps) => {
   const { _id, img, title, desc, deepDetails, isCarouselItem, priceKg } = props;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   return (
     <div
       className={classNames(
@@ -41,26 +42,27 @@ const ProductCart = (props: ProductCardProps) => {
           <p className=" text-sm text-muted-foreground md:text-lg lg:text-xl">
             <span className="mr-1">{priceKg}</span>
             <span className="uppercase">aed</span>
-            <span className="text-sm"> (Including VAT)</span>
+            <span className="text-xs"> (Price Per Kg; Including VAT)</span>
           </p>
         </div>
       </Link>
       <Button
         size={"sm"}
-        onClick={() =>
-          dispatch(
-            addToCart({
-              ...props,
-              count: 1,
-              weight: 1,
-              selectedWeightAndPrice: {
-                price: priceKg,
-                weight: 1,
-              },
-              localId: new Date(),
-              unit: "kg",
-            }),
-          )
+        onClick={
+          () => navigate(`/product/${_id}`)
+          // dispatch(
+          //   addToCart({
+          //     ...props,
+          //     count: 1,
+          //     weight: 1,
+          //     selectedWeightAndPrice: {
+          //       price: priceKg,
+          //       weight: 1,
+          //     },
+          //     localId: new Date(),
+          //     unit: "kg",
+          //   }),
+          // )
         }
       >
         add to cart

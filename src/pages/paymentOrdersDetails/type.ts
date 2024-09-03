@@ -3,6 +3,8 @@ export type PaymentOrdersValue = {
   userName: string;
   userStreet: string;
   userBuilding: string;
+  userFloorNo: string;
+  userUnitNo: string;
   userMobileNumber: string;
   userNote: string;
   orderStatus?: string;
@@ -20,4 +22,5 @@ export type CartItem = {
   price: string;
   quantity: number;
   weight: string;
+  note?: string;
 };

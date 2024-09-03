@@ -62,10 +62,11 @@ const Product = () => {
     dispatch(
       addToCart({
         ...productDetails,
-        count: values.count,
+        count: 1,
         selectedWeightAndPrice: values.selectedWeightAndPrice,
         localId: new Date(),
         unit: values.selectedWeightAndPrice.unit,
+        note: values.note,
       }),
     );
   };
@@ -104,7 +105,7 @@ const Product = () => {
                   {parseFloat(watch("selectedWeightAndPrice").price).toFixed(2)}
                 </span>
                 <span className="uppercase">aed</span>
-                <span className="text-sm"> (Including VAT)</span>
+                <span className="text-xs"> (Price Per Kg; Including VAT)</span>
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -205,7 +206,28 @@ const Product = () => {
                 <option value="g">g</option>
               </select>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="items-center space-y-2 md:w-[80%]">
+              <p className="text-sm text-gray-700">
+                Please enter any notes or requests about your order
+              </p>
+              <textarea
+                name="note"
+                id="note"
+                value={watch("note")}
+                onChange={(e) => setValue("note", e.target.value)}
+                className="min-h-[100px] w-full border bg-background p-2 px-4 shadow-sm"
+              />
+
+              {/* <input
+                type="text"
+                min={3}
+                name="note"
+                value={watch("note")}
+                onChange={(e) => setValue("note", e.target.value)}
+                className="border bg-background p-2 px-4 shadow-sm"
+              /> */}
+            </div>
+            {/* <div className="flex items-center gap-4">
               <input
                 type="number"
                 name="count"
@@ -231,11 +253,11 @@ const Product = () => {
                   <CiSquareMinus className="h-12 w-12" />
                 </button>
               </div>
-            </div>
+            </div> */}
             {/* </div> */}
-            {errors.count && (
+            {/* {errors.count && (
               <p className="text-destructive">{errors.count.message}</p>
-            )}
+            )} */}
             <Button type="submit"> add to cart</Button>
           </form>
         </div>

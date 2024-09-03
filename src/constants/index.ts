@@ -2,18 +2,18 @@ import L from "leaflet";
 
 const NAV_LINKS = [
   { label: "about us", href: "/about-us" },
-  ...(localStorage.userId
-    ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
-    : []),
+  // ...(localStorage.userId
+  //   ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
+  //   : []),
   { label: "contact us", href: "/contact-us" },
 ];
 const DRAWER_LINKS = [
   { label: "home", href: "/" },
-  { label: "products", href: "/products" },
+  { label: "Shop", href: "/products" },
   { label: "about us", href: "/about-us" },
-  ...(localStorage.userId
-    ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
-    : []),
+  // ...(localStorage.userId
+  //   ? [{ label: "orders", href: `/orders/user/${localStorage.userId}` }]
+  //   : []),
   { label: "contact us", href: "/contact-us" },
 ];
 const CAROUSAL_RESPONSIVE = {
@@ -72,7 +72,8 @@ const ORDERS_TABLE_HEADER = ["products", "weight", "total price"];
 const CART_TABLE_HEADER = [
   "products",
   "weight",
-  "amounts",
+  // "amounts",
+  "note",
   "total price",
   "delete",
 ];
