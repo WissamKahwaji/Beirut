@@ -228,7 +228,7 @@ const Footer = () => {
         </div>
         <div className=" text-sm">
           Powered By
-          <a href="/" className=" ml-1">
+          <a href="https://siimedia.net/" className=" ml-1">
             Sii Media
           </a>
         </div>
