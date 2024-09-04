@@ -104,7 +104,7 @@ const PaymentOrdersDetails = () => {
             On our online store, we process order within the United Arab
             Emirates only. For worldwide orders, please{" "}
             <span
-              className="font-bold underline hover:cursor-pointer hover:bg-yellow-300"
+              className="font-bold underline hover:cursor-pointer hover:bg-textShadow"
               onClick={() => {
                 navigate("/contact-us");
               }}
@@ -116,7 +116,7 @@ const PaymentOrdersDetails = () => {
           <p className="text-center font-semibold">
             Please refer to our{" "}
             <span
-              className="font-bold text-black underline hover:cursor-pointer hover:bg-yellow-300"
+              className="font-bold text-black underline hover:cursor-pointer hover:bg-textShadow"
               onClick={() => {
                 navigate("/shipping-policy");
               }}
