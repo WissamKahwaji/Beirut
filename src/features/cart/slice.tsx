@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { DeepDetails, Product } from "@/api/products/type";
+import { toast } from "react-toastify";
 
 interface CartValue extends Product {
   count: number;
@@ -44,6 +45,7 @@ const cartSlice = createSlice({
       // } else {
       state.cartValues.push(action.payload);
       // }
+      toast.success("product has been added successfully.");
     },
     clearCart: (state, action) => {
       state.cartValues = [];

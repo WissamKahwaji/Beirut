@@ -84,7 +84,7 @@ const Product = () => {
             alt={productDetails?.title}
           />
         </div>
-        <div className="flex flex-col  gap-4 md:gap-6">
+        <div className="flex flex-col  gap-4 md:max-w-[500px] md:gap-6">
           <p className="sm:2xl lg:5xl hidden border-b border-border pb-4 text-xl font-semibold uppercase md:block md:text-4xl">
             {productDetails?.title}
           </p>

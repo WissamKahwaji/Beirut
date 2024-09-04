@@ -14,7 +14,7 @@ const ShippingPolicy = () => {
           At this time, through our website, we process and ship orders to all
           emirates within the United Arab Emirates only. <br /> For orders
           outside the U.A.E., kindly contact us via WhatsApp on number "
-          <span className="bg-yellow-300 font-bold">+ 971 50 611 75 89</span>"
+          <span className="bg-textShadow font-bold">+ 971 50 611 75 89</span>"
           for the necessary details, shipping fees and logistics. <br />
           <br /> We do our best to process your orders within 1 to 2 business
           days after placing your order (Please allow a delay of few additional
@@ -36,7 +36,7 @@ const ShippingPolicy = () => {
           (Including VAT) per delivery. <br />
           <br /> For orders outside the U.A.E., the shipping rates may vary, so
           kindly contact our WhatsApp number{" "}
-          <span className="bg-yellow-300 font-bold">
+          <span className="bg-textShadow font-bold">
             "+971 50 611 75 89"
           </span>{" "}
           for more details.
@@ -68,7 +68,7 @@ const ShippingPolicy = () => {
             <tbody>
               <tr>
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300 font-bold">Monday</span>
+                  <span className="bg-textShadow font-bold">Monday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -76,14 +76,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -95,18 +95,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Tuesday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Tuesday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Wednesday
                           </span>
                           " for delivery to all other emirates.
@@ -118,7 +118,7 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300 font-bold">Tuesday</span>
+                  <span className="bg-textShadow font-bold">Tuesday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -126,14 +126,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -145,18 +145,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Wednesday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Wednesday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Thursday
                           </span>
                           " for delivery to all other emirates.
@@ -168,7 +168,7 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300 font-bold">Wednesday</span>
+                  <span className="bg-textShadow font-bold">Wednesday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -176,14 +176,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -195,18 +195,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Thursday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Thursday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Friday
                           </span>
                           " for delivery to all other emirates.
@@ -218,7 +218,7 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300 font-bold">Thursday</span>
+                  <span className="bg-textShadow font-bold">Thursday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -226,14 +226,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -245,18 +245,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Friday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Friday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Saturday
                           </span>
                           " for delivery to all other emirates.
@@ -268,7 +268,7 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300">Friday</span>
+                  <span className="bg-textShadow">Friday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -276,14 +276,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -295,18 +295,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Saturday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by the next day (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Saturday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Monday
                           </span>
                           " for delivery to all other emirates.
@@ -318,7 +318,7 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300">Saturday</span>
+                  <span className="bg-textShadow">Saturday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <table className="w-[450px] border border-gray-400 md:w-[900px]">
@@ -326,14 +326,14 @@ const ShippingPolicy = () => {
                       <tr>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             12.00 AM - 5.00 PM
                           </span>
                           "
                         </th>
                         <th className="border border-gray-400 px-2 py-2">
                           Order placed between "
-                          <span className="bg-yellow-300">
+                          <span className="bg-textShadow">
                             5.00 PM and 12.00 AM
                           </span>
                           "
@@ -345,18 +345,18 @@ const ShippingPolicy = () => {
                         <td className="w-1/2 px-2 py-2">
                           Expect your order on the same day for delivery in Abu
                           Dhabi and by (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Monday
                           </span>
                           ) for delivery to all other emirates.
                         </td>
                         <td className="w-1/2 border-l border-gray-400 px-2 py-2">
                           Expect your order by (
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Monday
                           </span>
                           ) for delivery inside Abu Dhabi and by "
-                          <span className="bg-yellow-300 font-bold">
+                          <span className="bg-textShadow font-bold">
                             Monday or Tuesday
                           </span>
                           " for delivery to all other emirates.
@@ -368,14 +368,14 @@ const ShippingPolicy = () => {
               </tr>
               <tr className="border-t border-gray-400">
                 <td className="border border-gray-400 px-4 py-2 text-sm font-bold text-black">
-                  <span className="bg-yellow-300">Sunday</span>
+                  <span className="bg-textShadow">Sunday</span>
                 </td>
                 <td className="border-l border-gray-400 px-4 py-2 text-sm text-black">
                   <div className="w-[450px] border border-gray-400 px-2 py-2 md:w-[900px]">
                     Expect your order by (
-                    <span className="bg-yellow-300 font-bold">Monday</span>) for
+                    <span className="bg-textShadow font-bold">Monday</span>) for
                     delivery inside Abu Dhabi and by (
-                    <span className="bg-yellow-300 font-bold">Tuesday</span>)
+                    <span className="bg-textShadow font-bold">Tuesday</span>)
                     for delivery to all other emirates.
                   </div>
                 </td>
@@ -412,16 +412,16 @@ const ShippingPolicy = () => {
           In case of any request or whether you would like to follow up with
           your order, kindly call us or contact us via WhatsApp on the following
           numbers (Everyday between "
-          <span className="bg-yellow-300 font-bold">8.15 AM to 12.00 AM</span>
+          <span className="bg-textShadow font-bold">8.15 AM to 12.00 AM</span>
           "):
         </p>
         <div className=" pt-2 md:mx-60">
           <p className="text-sm">
-            "<span className="bg-yellow-300 font-bold">+971 54 758 17 87</span>"
+            "<span className="bg-textShadow font-bold">+971 54 758 17 87</span>"
             (Retail Store)
           </p>
           <p className="text-sm">
-            "<span className="bg-yellow-300 font-bold">+971 2 666 49 50</span>"
+            "<span className="bg-textShadow font-bold">+971 2 666 49 50</span>"
             (Retail Store)
           </p>
         </div>
@@ -453,7 +453,7 @@ const ShippingPolicy = () => {
         <p className="text-sm">
           Therefore, feel free to immediately escalate the case, to our
           management team, on phone number "
-          <span className="bg-yellow-300 font-bold">+ 971 50 611 75 89</span>"
+          <span className="bg-textShadow font-bold">+ 971 50 611 75 89</span>"
           and we will work as fast as possible to resolve this matter for you.
           We will send you a new order free of cost and free of delivery charge
           and pick up the old one at the time of delivery of your new order. In
@@ -470,7 +470,7 @@ const ShippingPolicy = () => {
           If you have any questions or inquiries, face any problems, complaints
           or require any support never hesitate to contact us on our management
           team number at "
-          <span className="bg-yellow-300 font-bold">+971 50 611 75 89</span>"
+          <span className="bg-textShadow font-bold">+971 50 611 75 89</span>"
           (by phone call or WhatsApp text message) or by email at{" "}
           <span className="italic text-blue-500 underline hover:cursor-pointer">
             beirutroastery.1980@gmail.com
