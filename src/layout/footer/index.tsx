@@ -96,7 +96,7 @@ const Footer = () => {
                 </p>
                 <Link to={`/shipping-policy`}>
                   <p className="text-sm font-semibold capitalize">
-                    Shipping Pollicy
+                    Shipping Policy
                   </p>
                 </Link>
               </div>

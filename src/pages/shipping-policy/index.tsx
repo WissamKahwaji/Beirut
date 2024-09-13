@@ -384,10 +384,6 @@ const ShippingPolicy = () => {
           </table>
         </div>
         <p className="text-sm">
-          Please expect the delivery after placing your order as per the
-          following schedule:
-        </p>
-        <p className="text-sm">
           Please be aware that the mentioned delivery time periods may become
           longer in case you are placing an order just before or during weekends
           and holidays.
